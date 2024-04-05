@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "CTFdPy"
+version = "0.1.0"
+description = "A python wrapper around the CTFd API"
+authors = ["Jus-Codin <70018166+Jus-Codin@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+httpx = "^0.27.0"
+pydantic = "^2.6.4"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+mkdocs-material = "^9.5.16"
+mkdocstrings = {extras = ["python"], version = "^0.24.1"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

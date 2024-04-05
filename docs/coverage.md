@@ -1,0 +1,67 @@
+---
+hide:
+    - navigation
+---
+
+# API Coverage
+
+- [ ] Awards
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Brackets
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Challenges
+    - [x] [Endpoint Documentation](./endpoints/challenges.md)
+    - [ ] API Implementation
+- [ ] Comments
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Configs
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [x] Files
+    - [x] [Endpoint Documentation](./endpoints/files.md)
+    - [x] [API Implementation](./ctfdpy/api/files.md)
+- [ ] Flags
+    - [x] [Endpoint Documentation](./endpoints/flags.md)
+    - [ ] API Implementation
+- [ ] Hints
+    - [x] [Endpoint Documentation](./endpoints/hints.md)
+    - [ ] API Implementation
+- [ ] Notifications
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Pages
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Scoreboard
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Shares
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Statistics
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Submissions
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Tags
+    - [x] [Endpoint Documentation](./endpoints/tags.md)
+    - [ ] API Implementation
+- [ ] Teams
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Tokens
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Topics
+    - [x] [Endpoint Documentation](./endpoints/topics.md)
+    - [ ] API Implementation
+- [ ] Unlocks
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation
+- [ ] Users
+    - [ ] Endpoint Documentation
+    - [ ] API Implementation

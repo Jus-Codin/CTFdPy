@@ -1,0 +1,128 @@
+site_name: CTFdPy
+site_url: http://127.0.0.1:8000/
+site_author: Jus-Codin
+site_description: >-
+  CTFdPy is an API wrapper for CTFd, a Capture The Flag platform.
+  It is designed to make it easier to interact with the CTFd API
+  in Python to streamline the setup process for CTFs.
+
+repo_name: Jus-Codin/CTFdPy
+repo_url: https://github.com/Jus-Codin/CTFdPy
+
+theme:
+  name: material
+
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - toc.follow
+
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/cog
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-on
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to system preference
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+
+markdown_extensions:
+
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+watch:
+  - ctfdpy
+
+plugins:
+  - search
+  - autorefs
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [.]
+          options:
+            show_source: true
+            docstring_style: numpy
+
+nav:
+  - Home: index.md
+  - CTFdPy:
+    - Home: ctfdpy/index.md
+    - Client: ctfdpy/client.md
+    - Exceptions: ctfdpy/exceptions.md
+    - API:
+      - API: ctfdpy/api/api.md
+      - Files: ctfdpy/api/files.md
+    - Models:
+      - Models: ctfdpy/models/models.md
+      - Files: ctfdpy/models/files.md
+  - CTFd Endpoints:
+    - Home: endpoints/index.md
+    - Awards: endpoints/awards.md
+    - Brackets: endpoints/brackets.md
+    - Challenges: endpoints/challenges.md
+    - Comments: endpoints/comments.md
+    - Files: endpoints/files.md
+    - Flags: endpoints/flags.md
+    - Hints: endpoints/hints.md
+    - Notifications: endpoints/notifications.md
+    - Scoreboard: endpoints/scoreboard.md
+    - Tags: endpoints/tags.md
+    - Teams: endpoints/teams.md
+    - Topics: endpoints/topics.md
+    - Unlocks: endpoints/unlocks.md
+    - Users: endpoints/users.md
+  - API Coverage: coverage.md

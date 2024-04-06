@@ -26,9 +26,9 @@ hide:
 - [ ] Flags
     - [x] [Endpoint Documentation](./endpoints/flags.md)
     - [ ] API Implementation
-- [ ] Hints
+- [x] Hints
     - [x] [Endpoint Documentation](./endpoints/hints.md)
-    - [ ] API Implementation
+    - [x] API Implementation
 - [ ] Notifications
     - [ ] Endpoint Documentation
     - [ ] API Implementation

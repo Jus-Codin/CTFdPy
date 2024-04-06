@@ -1,20 +1,26 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
-from typing import IO, Literal, overload
+from typing import Annotated, Literal, overload
 
-from pydantic import ValidationError
+from pydantic import Field, TypeAdapter, ValidationError
 
 from ctfdpy.api.api import API
 from ctfdpy.exceptions import CTFdpyModelValidationError
 from ctfdpy.models.files import (
+    ChallengeFile,
     CreateFilePayload,
-    File,
-    FileContent,
     FileType,
     MultipartFileTypes,
+    PageFile,
+    StandardFile,
 )
 from ctfdpy.utils import admin_only
+
+file_adapter = TypeAdapter(
+    Annotated[StandardFile | ChallengeFile | PageFile, Field(..., discriminator="type")]
+)
 
 
 class FilesAPI(API):
@@ -37,24 +43,25 @@ class FilesAPI(API):
 
     Methods
     -------
-    list_files(type: FileType | None = None, location: str | None = None, q: str | None = None, field: Literal["type", "location"] | None = None) -> list[File]
-        Lists all files
-    create_files(payload_or_files: CreateFilePayload | list[MultipartFileTypes] | None = None, /, file_paths: list[Path] | None = None, *, type: FileType | None = None, challenge_id: int | None = None, challenge: int | None = None, page_id: int | None = None, page: int | None = None, location: str | None = None) -> list[File]
-        Creates files
-    get_file(file_id: int) -> File
-        Gets a file by ID
-    delete_file(file_id: int) -> bool
-        Deletes a file by ID
+    list(type: FileType | None = None, location: str | None = None, q: str | None = None, field: Literal["type", "location"] | None = None) -> list[File]
+        Method to list all files with optional filtering
+    create(payload: CreateFilePayload | None = None, files: list[MultipartFileTypes] | None = None, file_paths: list[str | os.PathLike] | None = None, type: FileType | None = None, challenge_id: int | None = None, challenge: int | None = None, page_id: int | None = None, page: int | None = None, location: str | None = None) -> list[File]
+        Method to create files
+    get(file_id: int) -> File
+        Method to get a file by ID
+    delete(file_id: int) -> bool
+        Method to delete a file by ID
     """
 
     @admin_only
-    def list_files(
+    def list(
         self,
+        *,
         type: FileType | None = None,
         location: str | None = None,
         q: str | None = None,
         field: Literal["type", "location"] | None = None,
-    ) -> list[File]:
+    ) -> list[StandardFile | ChallengeFile | PageFile]:
         """
         !!! note "This method is only available to admins"
 
@@ -73,7 +80,7 @@ class FilesAPI(API):
 
         Returns
         -------
-        list[File]
+        list[StandardFile | ChallengeFile | PageFile]
             A list of files
 
         Raises
@@ -89,12 +96,12 @@ class FilesAPI(API):
         --------
         Get all files
         ```python
-        files = client.files.list_files()
+        files = client.files.list()
         ```
 
         Get all challenge files
         ```python
-        files = client.files.list_files(type=FileType.CHALLENGE)
+        files = client.files.list(type=FileType.CHALLENGE)
         ```
         """
         # Check that q and field are both provided or neither are provided
@@ -112,40 +119,41 @@ class FilesAPI(API):
 
         result = self._get("/api/v1/files", params=params)
 
-        return [File.model_validate(file) for file in result["data"]]
+        return [file_adapter.validate_python(file) for file in result["data"]]
 
     @overload
-    def create_files(self, payload: CreateFilePayload, /) -> list[File]: ...
+    def create(
+        self, *, payload: CreateFilePayload
+    ) -> list[StandardFile | ChallengeFile | PageFile]: ...
 
     @overload
-    def create_files(
+    def create(
         self,
-        files: list[MultipartFileTypes],
-        /,
-        file_paths: list[Path],
         *,
-        type: FileType,
+        files: list[MultipartFileTypes] | None = None,
+        file_paths: list[str | os.PathLike] | None = None,
+        type: FileType = FileType.STANDARD,
         challenge_id: int | None = None,
         challenge: int | None = None,
         page_id: int | None = None,
         page: int | None = None,
         location: str | None = None,
-    ) -> list[File]: ...
+    ) -> list[StandardFile | ChallengeFile | PageFile]: ...
 
     @admin_only
-    def create_files(
+    def create(
         self,
-        payload_or_files: CreateFilePayload | list[MultipartFileTypes] | None = None,
-        /,
-        file_paths: list[Path] | None = None,
         *,
+        payload: CreateFilePayload | None = None,
+        files: list[MultipartFileTypes] | None = None,
+        file_paths: list[str | os.PathLike] | None = None,
         type: FileType | None = None,
         challenge_id: int | None = None,
         challenge: int | None = None,
         page_id: int | None = None,
         page: int | None = None,
         location: str | None = None,
-    ) -> list[File]:
+    ) -> list[StandardFile | ChallengeFile | PageFile]:
         """
         !!! note "This method is only available to admins"
 
@@ -158,44 +166,79 @@ class FilesAPI(API):
         files : list[MultipartFileTypes]
             The files to upload. This can either be a `#!python FileContent` type or a tuple of length between 2 and 4
             in the format `(filename, file, content_type, headers)`.
-        file_paths : list[Path], optional
+        file_paths : list[str | os.PathLike] | None
             The paths to the files to upload, by default None
-        type : FileType, optional
+        type : FileType | None
             The type of the files, by default None
-        challenge_id : int, optional
+        challenge_id : int | None
             The ID of the challenge associated with the files, by default None
-        challenge : int, optional
+        challenge : int | None
             Alias for `challenge_id`, by default None
-        page_id : int, optional
+        page_id : int | None
             The ID of the page associated with the files, by default None
-        page : int, optional
+        page : int | None
             Alias for `page_id`, by default None
-        location : str, optional
+        location : str | None
             The location to upload the files to, by default None
 
         Returns
         -------
-        list[File]
+        list[StandardFile | ChallengeFile | PageFile]
             A list of files created
 
         Raises
         ------
         ValueError
             If no files are provided
+        FileNotFoundError
+            If a provided file path does not exist
         CTFdpyBadRequestException
             An error occurred processing the provided or stored data
         CTFdpyUnauthorizedException
             The client is not authorized to access the endpoint
         CTFdpyModelValidationError
             The provided payload is invalid
+
+        Examples
+        --------
+        Create a file for a challenge with ID of `1`
+        ```python
+        # Using `CreateFilePayload`
+
+        payload = CreateFilePayload(
+            files=[("file.txt", open("file.txt", "rb"))],
+            type=FileType.CHALLENGE,
+            challenge_id=1
+        )
+        file = client.files.create(payload=payload)
+
+        # Or using file content
+
+        file = client.files.create(
+            files=[("file.txt", open("file.txt", "rb"))],
+            type=FileType.CHALLENGE,
+            challenge_id=1
+        )
+
+        # Or using file paths
+
+        file = client.files.create(
+            file_paths=[Path("file.txt")],
+            type=FileType.CHALLENGE,
+            challenge_id=1
+        )
+
+        ```
         """
-        if isinstance(payload_or_files, CreateFilePayload):
-            payload = payload_or_files
-        else:
-            files = payload_or_files or []
-            files.extend(
-                (file_path.name, file_path.open("rb")) for file_path in file_paths
-            )
+        if payload is None:
+            files = files or []
+
+            if file_paths is not None:
+                for file_path in file_paths:
+                    file_path = Path(file_path)
+                    if not file_path.exists():
+                        raise FileNotFoundError(f"File not found: {file_path}")
+                    files.append((file_path.name, file_path.open("rb")))
 
             if len(files) == 0:
                 raise ValueError("At least one file must be provided")
@@ -211,12 +254,16 @@ class FilesAPI(API):
             except ValidationError as e:
                 raise CTFdpyModelValidationError(e.errors())
 
-        result = self._post("/api/v1/files", json=payload.model_dump(model="json"))
+        result = self._post(
+            "/api/v1/files",
+            headers={"Content-Type": "multipart/form-data"},
+            **payload.to_payload(),  # We need to unpack the payload
+        )
 
-        return [File.model_validate(file) for file in result["data"]]
+        return [file_adapter.validate_python(file) for file in result["data"]]
 
     @admin_only
-    def get_file(self, file_id: int) -> File:
+    def get(self, file_id: int) -> StandardFile | ChallengeFile | PageFile:
         """
         !!! note "This method is only available to admins"
 
@@ -229,7 +276,7 @@ class FilesAPI(API):
 
         Returns
         -------
-        File
+        StandardFile | ChallengeFile | PageFile
             The file
 
         Raises
@@ -243,15 +290,15 @@ class FilesAPI(API):
         --------
         Get a file
         ```python
-        file = client.files.get_file(1)
+        file = client.files.get(1)
         ```
         """
         result = self._get(f"/api/v1/files/{file_id}")
 
-        return File.model_validate(result["data"])
+        return file_adapter.validate_python(result["data"])
 
     @admin_only
-    def delete_file(self, file_id: int) -> bool:
+    def delete(self, file_id: int) -> bool:
         """
         !!! note "This method is only available to admins"
 
@@ -278,7 +325,7 @@ class FilesAPI(API):
         --------
         Delete a file
         ```python
-        client.files.delete_file(1)
+        client.files.delete(1)
         ```
         """
         result = self._delete(f"/api/v1/files/{file_id}")

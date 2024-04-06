@@ -28,7 +28,7 @@ hide:
     - [ ] API Implementation
 - [x] Hints
     - [x] [Endpoint Documentation](./endpoints/hints.md)
-    - [x] API Implementation
+    - [x] [API Implementation](./ctfdpy/api/hints.md)
 - [ ] Notifications
     - [ ] Endpoint Documentation
     - [ ] API Implementation

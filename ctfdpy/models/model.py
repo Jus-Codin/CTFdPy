@@ -1,14 +1,20 @@
 from __future__ import annotations
 
-from pydantic import BaseModel
+from typing import Any
+
+from pydantic import BaseModel, ConfigDict
 
 
-class Model(BaseModel, validate_assignment=True, extra="allow"):
+class Model(BaseModel):
     """
     The base model for all models
 
     This class should not be instantiated directly
     """
+
+    model_config = ConfigDict(
+        extra="allow", use_enum_values=True, validate_assignment=True
+    )
 
 
 # class ResponseModel(Model, extra="allow"):
@@ -26,6 +32,22 @@ class CreatePayloadModel(Model, extra="forbid"):
     This class should not be instantiated directly
     """
 
+    def to_payload(self, **kwargs) -> dict[str, Any]:
+        """
+        Converts the model to a payload
+
+        Parameters
+        ----------
+        kwargs : dict[str, Any]
+            Additional keyword arguments to pass to the model dump
+
+        Returns
+        -------
+        dict[str, Any]
+            The payload
+        """
+        return self.model_dump(mode="json", exclude_unset=True, **kwargs)
+
 
 class UpdatePayloadModel(Model, extra="forbid"):
     """
@@ -33,3 +55,19 @@ class UpdatePayloadModel(Model, extra="forbid"):
 
     This class should not be instantiated directly
     """
+
+    def to_payload(self, **kwargs) -> dict[str, Any]:
+        """
+        Converts the model to a payload
+
+        Parameters
+        ----------
+        kwargs : dict[str, Any]
+            Additional keyword arguments to pass to the model dump
+
+        Returns
+        -------
+        dict[str, Any]
+            The payload
+        """
+        return self.model_dump(mode="json", exclude_unset=True, **kwargs)

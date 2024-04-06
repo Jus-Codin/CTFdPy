@@ -15,6 +15,7 @@ theme:
   features:
     - content.code.copy
     - content.code.annotate
+    - content.tabs.link
     - navigation.footer
     - navigation.tabs
     - navigation.tabs.sticky
@@ -69,7 +70,8 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight
-  - pymdownx.inlinehilite
+  - pymdownx.inlinehilite:
+      style_plain_text: py3
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
@@ -93,35 +95,52 @@ plugins:
       handlers:
         python:
           paths: [.]
+          import:
+          - https://docs.python.org/3/objects.inv
           options:
             show_source: true
+            show_root_toc_entry: false
             docstring_style: numpy
+            members_order: source
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            separate_signature: true
+            show_signature_annotations: true
+            signature_crossrefs: true
 
 nav:
   - Home: index.md
   - CTFdPy:
     - Home: ctfdpy/index.md
     - Client: ctfdpy/client.md
-    - Exceptions: ctfdpy/exceptions.md
     - API:
       - API: ctfdpy/api/api.md
       - Files: ctfdpy/api/files.md
+      - Hints: ctfdpy/api/hints.md
     - Models:
-      - Models: ctfdpy/models/models.md
+      - Models: ctfdpy/models/model.md
       - Files: ctfdpy/models/files.md
+      - Hints: ctfdpy/models/hints.md
+    - Exceptions: ctfdpy/exceptions.md
   - CTFd Endpoints:
     - Home: endpoints/index.md
     - Awards: endpoints/awards.md
     - Brackets: endpoints/brackets.md
     - Challenges: endpoints/challenges.md
     - Comments: endpoints/comments.md
+    - Configs: endpoints/configs.md
     - Files: endpoints/files.md
     - Flags: endpoints/flags.md
     - Hints: endpoints/hints.md
     - Notifications: endpoints/notifications.md
+    - Pages: endpoints/pages.md
     - Scoreboard: endpoints/scoreboard.md
+    - Shares: endpoints/shares.md
+    - Statistics: endpoints/statistics.md
+    - Submissions: endpoints/submissions.md
     - Tags: endpoints/tags.md
     - Teams: endpoints/teams.md
+    - Tokens: endpoints/tokens.md
     - Topics: endpoints/topics.md
     - Unlocks: endpoints/unlocks.md
     - Users: endpoints/users.md

@@ -1,3 +1,15 @@
+"""
+## Exception Hierarchy
+
+- [`CTFdpyException`][ctfdpy.exceptions.CTFdpyException]
+    - [`CTFdpyRequestException`][ctfdpy.exceptions.CTFdpyRequestException]
+        - [`CTFdpyBadRequestException`][ctfdpy.exceptions.CTFdpyBadRequestException]
+        - [`CTFdpyUnauthorizedException`][ctfdpy.exceptions.CTFdpyUnauthorizedException]
+        - [`CTFdpyNotFoundException`][ctfdpy.exceptions.CTFdpyNotFoundException]
+        - [`CTFdpyAdminOnlyException`][ctfdpy.exceptions.CTFdpyAdminOnlyException]
+    - [`CTFdpyModelValidationError`][ctfdpy.exceptions.CTFdpyModelValidationError]
+"""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -32,17 +44,17 @@ class CTFdpyBadRequestException(CTFdpyRequestException):
     pass
 
 
-class CTFdpyNotFoundException(CTFdpyRequestException):
+class CTFdpyUnauthorizedException(CTFdpyRequestException):
     """
-    Exception raised when a resource is not found
+    Exception raised when a request returns a 403
     """
 
     pass
 
 
-class CTFdpyUnauthorizedException(CTFdpyRequestException):
+class CTFdpyNotFoundException(CTFdpyRequestException):
     """
-    Exception raised when a request returns a 403
+    Exception raised when a resource is not found
     """
 
     pass

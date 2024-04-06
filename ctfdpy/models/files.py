@@ -31,9 +31,9 @@ class FileType(StrEnum):
     PAGE = "page"
 
 
-class File(Model, frozen=True):
+class BaseFile(Model, frozen=True):
     """
-    Represents a file in CTFd.
+    A base file model. Not meant to be instantiated directly.
 
     This model cannot be edited since there is no endpoint to update files in CTFd.
 
@@ -47,12 +47,6 @@ class File(Model, frozen=True):
         The location of the file
     sha1sum : str
         The SHA-1 checksum of the file
-    challenge_id : int | None
-        The ID of the challenge associated with the file.
-        If `type` is not `#!python "challenge"`, this will be `#!python None`
-    page_id : int | None
-        The ID of the page associated with the file.
-        If `type` is not `#!python "page"`, this will be `#!python None`
 
     Attributes
     ----------
@@ -64,42 +58,124 @@ class File(Model, frozen=True):
         The location of the file
     sha1sum : str
         The SHA-1 checksum of the file
-    challenge_id : int | None
-        The ID of the challenge associated with the file.
-        If `type` is not `#!python "challenge"`, this will be `#!python None`
-    page_id : int | None
-        The ID of the page associated with the file.
-        If `type` is not `#!python "page"`, this will be `#!python None`
     """
 
     id: int = Field(frozen=True, exclude=True)
-    type: FileType  # This might slow down the code due to the use of unions
+    type: FileType
     location: str
     sha1sum: str
-    challenge_id: int | None = None
-    page_id: int | None = None
 
-    @model_validator(mode="after")
-    def check_file_type(self) -> File:
-        match self.type:
-            case FileType.STANDARD:
-                if self.challenge_id is not None or self.page_id is not None:
-                    raise ValueError(
-                        "Challenge ID and page ID must be None for standard files"
-                    )
-            case FileType.CHALLENGE:
-                if self.challenge_id is None:
-                    raise ValueError(
-                        "Challenge ID must be provided for challenge files"
-                    )
-                if self.page_id is not None:
-                    raise ValueError("Page ID must be None for challenge files")
-            case FileType.PAGE:
-                if self.page_id is None:
-                    raise ValueError("Page ID must be provided for page files")
-                if self.challenge_id is not None:
-                    raise ValueError("Challenge ID must be None for page files")
-        return self
+
+class StandardFile(BaseFile):
+    """
+    Represents a standard file in CTFd.
+
+    This model cannot be edited since there is no endpoint to update files in CTFd.
+
+    Parameters
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.STANDARD]
+        The type of the file. This should always be `"standard"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+
+    Attributes
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.STANDARD]
+        The type of the file. This should always be `"standard"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+    """
+
+    type: Literal[FileType.STANDARD]
+
+
+class ChallengeFile(BaseFile):
+    """
+    Represents a challenge file in CTFd.
+
+    This model cannot be edited since there is no endpoint to update files in CTFd.
+
+    Parameters
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.CHALLENGE]
+        The type of the file. This should always be `"challenge"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+    challenge_id : int
+        The ID of the challenge associated with the file
+    challenge : int
+        Alias for `challenge_id`
+
+    Attributes
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.CHALLENGE]
+        The type of the file. This should always be `"challenge"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+    challenge_id : int
+        The ID of the challenge associated with the file
+    """
+
+    type: Literal[FileType.CHALLENGE]
+    challenge_id: int = Field(
+        validation_alias=AliasChoices("challenge_id", "challenge")
+    )
+
+
+class PageFile(BaseFile):
+    """
+    Represents a page file in CTFd.
+
+    This model cannot be edited since there is no endpoint to update files in CTFd.
+
+    Parameters
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.PAGE]
+        The type of the file. This should always be `"page"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+    page_id : int
+        The ID of the page associated with the file
+    page : int
+        Alias for `page_id`
+
+    Attributes
+    ----------
+    id : int
+        The ID of the file
+    type : Literal[FileType.PAGE]
+        The type of the file. This should always be `"page"`
+    location : str
+        The location of the file
+    sha1sum : str
+        The SHA-1 checksum of the file
+    page_id : int
+        The ID of the page associated with the file
+    """
+
+    type: Literal[FileType.PAGE]
+    page_id: int = Field(validation_alias=AliasChoices("page_id", "page"))
 
 
 class CreateFilePayloadDict(TypedDict):
@@ -118,11 +194,11 @@ class CreateFilePayload(CreatePayloadModel):
     type : FileType
         The type of the files
     challenge_id : int | None
-        The ID of the challenge associated with the files. Required if `type` is `#!python "challenge"`
+        The ID of the challenge associated with the files. Required if `type` is `"challenge"`
     challenge : int | None
         Alias for `challenge_id`
     page_id : int | None
-        The ID of the page associated with the files. Required if `type` is `#!python "page"`
+        The ID of the page associated with the files. Required if `type` is `"page"`
     page : int | None
         Alias for `page_id`
     location : str | None
@@ -135,13 +211,9 @@ class CreateFilePayload(CreatePayloadModel):
     type : FileType
         The type of the files
     challenge_id : int | None
-        The ID of the challenge associated with the files. Required if `type` is `#!python "challenge"`
-    challenge : int | None
-        Alias for `challenge_id`
+        The ID of the challenge associated with the files. Required if `type` is `"challenge"`
     page_id : int | None
-        The ID of the page associated with the files. Required if `type` is `#!python "page"`
-    page : int | None
-        Alias for `page_id`
+        The ID of the page associated with the files. Required if `type` is `"page"`
     location : str | None
         The location to upload the files to. Cannot be specified if multiple files are provided
     """

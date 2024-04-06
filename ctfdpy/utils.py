@@ -9,6 +9,20 @@ if TYPE_CHECKING:
     from ctfdpy.api.api import API
 
 
+class _MissingSentinel:
+    def __eq__(self, other) -> bool:
+        return False
+
+    def __bool__(self) -> bool:
+        return False
+
+    def __repr__(self) -> str:
+        return "<MISSING>"
+
+
+MISSING = _MissingSentinel()
+
+
 _non_admins = set()  # stores tokens and usernames of non-admins
 
 

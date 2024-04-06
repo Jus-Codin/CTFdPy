@@ -12,13 +12,13 @@
         <meta name="author" content="Jus-Codin">
       
       
-        <link rel="canonical" href="http://127.0.0.1:8000/ctfdpy/models/files/">
+        <link rel="canonical" href="http://127.0.0.1:8000/ctfdpy/models/hints/">
       
       
-        <link rel="prev" href="../model/">
+        <link rel="prev" href="../files/">
       
       
-        <link rel="next" href="../hints/">
+        <link rel="next" href="../../exceptions/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Files - CTFdPy</title>
+        <title>Hints - CTFdPy</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ctfdpy.models.files.BaseFile" class="md-skip">
+        <a href="#ctfdpy.models.hints.HintRequirementsDict" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Files
+              Hints
             
           </span>
         </div>
@@ -624,6 +624,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -638,7 +659,7 @@
           
   
   <span class="md-ellipsis">
-    Files
+    Hints
   </span>
   
 
@@ -649,7 +670,7 @@
         
   
   <span class="md-ellipsis">
-    Files
+    Hints
   </span>
   
 
@@ -669,45 +690,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.BaseFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.HintRequirementsDict" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;HintRequirementsDict
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.StandardFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.BaseHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StandardFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseHint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" BaseHint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.BaseHint.to_update_payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_update_payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.Hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;Hint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.ChallengeFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.LockedHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ChallengeFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;LockedHint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.PageFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.UnlockedHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;PageFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;UnlockedHint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.CreateFilePayload" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.CreateHintPayload" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CreateFilePayload
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CreateHintPayload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.UpdateHintPayload" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;UpdateHintPayload
     </span>
   </a>
   
@@ -717,27 +771,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hints/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Hints
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1310,45 +1343,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.BaseFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.HintRequirementsDict" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;HintRequirementsDict
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.StandardFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.BaseHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StandardFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseHint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" BaseHint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.BaseHint.to_update_payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_update_payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.Hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;Hint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.ChallengeFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.LockedHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ChallengeFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;LockedHint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.PageFile" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.UnlockedHint" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;PageFile
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;UnlockedHint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ctfdpy.models.files.CreateFilePayload" class="md-nav__link">
+  <a href="#ctfdpy.models.hints.CreateHintPayload" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CreateFilePayload
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CreateHintPayload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctfdpy.models.hints.UpdateHintPayload" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;UpdateHintPayload
     </span>
   </a>
   
@@ -1372,7 +1438,7 @@
   
 
 
-  <h1>Files</h1>
+  <h1>Hints</h1>
 
 <div class="doc doc-object doc-module">
 
@@ -1396,11 +1462,66 @@
 
 
 
-<h2 id="ctfdpy.models.files.BaseFile" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">BaseFile</span>
+<h2 id="ctfdpy.models.hints.HintRequirementsDict" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">HintRequirementsDict</span>
 
 
-<a href="#ctfdpy.models.files.BaseFile" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#ctfdpy.models.hints.HintRequirementsDict" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-external" title="typing.TypedDict" href="https://docs.python.org/3/library/typing.html#typing.TypedDict">TypedDict</a></code></p>
+
+  
+      <p>Represents the requirements of a hint in CTFd.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HintRequirementsDict</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the requirements of a hint in CTFd.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">prerequisites</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="ctfdpy.models.hints.BaseHint" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">BaseHint</span>
+
+
+<a href="#ctfdpy.models.hints.BaseHint" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
@@ -1408,8 +1529,7 @@
             Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.model.Model" href="../model/#ctfdpy.models.model.Model">Model</a></code></p>
 
   
-      <p>A base file model. Not meant to be instantiated directly.</p>
-<p>This model cannot be edited since there is no endpoint to update files in CTFd.</p>
+      <p>A base hint model. Not meant to be instantiated directly.</p>
 
 
 
@@ -1431,7 +1551,7 @@
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint</p>
             </div>
           </td>
           <td>
@@ -1441,11 +1561,11 @@
         <tr>
           <td><code>type</code></td>
           <td>
-                <code><span title="ctfdpy.models.files.FileType">FileType</span></code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file</p>
+              <p>The type of the hint</p>
             </div>
           </td>
           <td>
@@ -1453,13 +1573,13 @@
           </td>
         </tr>
         <tr>
-          <td><code>location</code></td>
+          <td><code>challenge</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The location of the file</p>
+              <p>Alias for <code class="highlight"><span class="n">challenge_id</span></code></p>
             </div>
           </td>
           <td>
@@ -1467,13 +1587,27 @@
           </td>
         </tr>
         <tr>
-          <td><code>sha1sum</code></td>
+          <td><code>challenge_id</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>cost</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
             </div>
           </td>
           <td>
@@ -1496,46 +1630,46 @@
     </thead>
     <tbody>
         <tr>
-          <td><code><span title="ctfdpy.models.files.BaseFile.id">id</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.BaseHint.id">id</span></code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint, read-only</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.BaseFile.type">type</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.BaseHint.type">type</span></code></td>
           <td>
-                <code><span title="ctfdpy.models.files.FileType">FileType</span></code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file</p>
+              <p>The type of the hint</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.BaseFile.location">location</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.BaseHint.challenge_id">challenge_id</span></code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The location of the file</p>
+              <p>The ID of the challenge associated with the hint</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.BaseFile.sha1sum">sha1sum</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.BaseHint.cost">cost</span></code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
+              <p>The cost of the hint</p>
             </div>
           </td>
         </tr>
@@ -1543,8 +1677,18 @@
   </table>
 
             <details class="quote">
-              <summary>Source code in <code>ctfdpy\models\files.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
@@ -1576,39 +1720,55 @@
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
-<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BaseFile</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BaseHint</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A base file model. Not meant to be instantiated directly.</span>
-
-<span class="sd">    This model cannot be edited since there is no endpoint to update files in CTFd.</span>
+<span class="sd">    A base hint model. Not meant to be instantiated directly.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : FileType</span>
-<span class="sd">        The type of the file</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
+<span class="sd">        The ID of the hint</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge : int</span>
+<span class="sd">        Alias for `challenge_id`</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : FileType</span>
-<span class="sd">        The type of the file</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
+<span class="sd">        The ID of the hint, read-only</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">FileType</span>
-    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">sha1sum</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">HintType</span>
+    <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">,</span> <span class="s2">&quot;challenge&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cost</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span> <span class="nf">to_update_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UpdateHintPayload</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts the hint to a payload for updating hints.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        HintUpdatePayload</span>
+<span class="sd">            The payload for updating hints</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">UpdateHintPayload</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_attributes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -1625,239 +1785,72 @@
 
 
 
-
-  </div>
-
-  </div>
-
-
-</div>
-
-<div class="doc doc-object doc-class">
+<div class="doc doc-object doc-function">
 
 
 
-<h2 id="ctfdpy.models.files.StandardFile" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">StandardFile</span>
+<h3 id="ctfdpy.models.hints.BaseHint.to_update_payload" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">to_update_payload</span>
 
 
-<a href="#ctfdpy.models.files.StandardFile" class="headerlink" title="Permanent link">&para;</a></h2>
-
+<a href="#ctfdpy.models.hints.BaseHint.to_update_payload" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">to_update_payload</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.UpdateHintPayload" href="#ctfdpy.models.hints.UpdateHintPayload">UpdateHintPayload</a></span>
+</code></pre></div>
 
   <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.files.BaseFile" href="#ctfdpy.models.files.BaseFile">BaseFile</a></code></p>
-
   
-      <p>Represents a standard file in CTFd.</p>
-<p>This model cannot be edited since there is no endpoint to update files in CTFd.</p>
+      <p>Converts the hint to a payload for updating hints.</p>
 
 
 
-  <p><strong>Parameters:</strong></p>
+  <p><strong>Returns:</strong></p>
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>id</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The ID of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>type</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.STANDARD">STANDARD</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;standard&quot;</span></code></p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>location</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>sha1sum</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
         <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td><code><span title="ctfdpy.models.files.StandardFile.id">id</span></code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                <code>HintUpdatePayload</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.StandardFile.type">type</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.STANDARD">STANDARD</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;standard&quot;</span></code></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.StandardFile.location">location</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.StandardFile.sha1sum">sha1sum</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
+              <p>The payload for updating hints</p>
             </div>
           </td>
         </tr>
     </tbody>
   </table>
 
-            <details class="quote">
-              <summary>Source code in <code>ctfdpy\models\files.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StandardFile</span><span class="p">(</span><span class="n">BaseFile</span><span class="p">):</span>
+          <details class="quote">
+            <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">to_update_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UpdateHintPayload</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Represents a standard file in CTFd.</span>
+<span class="sd">    Converts the hint to a payload for updating hints.</span>
 
-<span class="sd">    This model cannot be edited since there is no endpoint to update files in CTFd.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.STANDARD]</span>
-<span class="sd">        The type of the file. This should always be `&quot;standard&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
-
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.STANDARD]</span>
-<span class="sd">        The type of the file. This should always be `&quot;standard&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    HintUpdatePayload</span>
+<span class="sd">        The payload for updating hints</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="n">FileType</span><span class="o">.</span><span class="n">STANDARD</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">UpdateHintPayload</span><span class="o">.</span><span class="n">model_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_attributes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+          </details>
+  </div>
 
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
+</div>
 
 
 
@@ -1872,20 +1865,19 @@
 
 
 
-<h2 id="ctfdpy.models.files.ChallengeFile" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">ChallengeFile</span>
+<h2 id="ctfdpy.models.hints.Hint" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">Hint</span>
 
 
-<a href="#ctfdpy.models.files.ChallengeFile" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#ctfdpy.models.hints.Hint" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.files.BaseFile" href="#ctfdpy.models.files.BaseFile">BaseFile</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.BaseHint" href="#ctfdpy.models.hints.BaseHint">BaseHint</a></code></p>
 
   
-      <p>Represents a challenge file in CTFd.</p>
-<p>This model cannot be edited since there is no endpoint to update files in CTFd.</p>
+      <p>Represents a hint in CTFd.</p>
 
 
 
@@ -1907,7 +1899,7 @@
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint</p>
             </div>
           </td>
           <td>
@@ -1917,53 +1909,11 @@
         <tr>
           <td><code>type</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.CHALLENGE">CHALLENGE</span>]</code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;challenge&quot;</span></code></p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>location</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>sha1sum</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>challenge_id</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The ID of the challenge associated with the file</p>
+              <p>The type of the hint</p>
             </div>
           </td>
           <td>
@@ -1984,6 +1934,76 @@
               <em>required</em>
           </td>
         </tr>
+        <tr>
+          <td><code>challenge_id</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>content</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>html</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The HTML content of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>cost</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>requirements</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.HintRequirementsDict" href="#ctfdpy.models.hints.HintRequirementsDict">HintRequirementsDict</a> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The requirements of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
     </tbody>
   </table>
 
@@ -2000,57 +2020,79 @@
     </thead>
     <tbody>
         <tr>
-          <td><code><span title="ctfdpy.models.files.ChallengeFile.id">id</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.Hint.id">id</span></code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint, read-only</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.ChallengeFile.type">type</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.Hint.type">type</span></code></td>
           <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.CHALLENGE">CHALLENGE</span>]</code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;challenge&quot;</span></code></p>
+              <p>The type of the hint</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.ChallengeFile.location">location</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.ChallengeFile.sha1sum">sha1sum</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.ChallengeFile.challenge_id">challenge_id</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.Hint.challenge_id">challenge_id</span></code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the challenge associated with the file</p>
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.Hint.content">content</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.Hint.html">html</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The HTML content of the hint, read-only</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.Hint.cost">cost</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.Hint.requirements">requirements</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.HintRequirementsDict" href="#ctfdpy.models.hints.HintRequirementsDict">HintRequirementsDict</a> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The requirements of the hint</p>
             </div>
           </td>
         </tr>
@@ -2058,8 +2100,37 @@
   </table>
 
             <details class="quote">
-              <summary>Source code in <code>ctfdpy\models\files.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
@@ -2073,69 +2144,50 @@
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ChallengeFile</span><span class="p">(</span><span class="n">BaseFile</span><span class="p">):</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Hint</span><span class="p">(</span><span class="n">BaseHint</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Represents a challenge file in CTFd.</span>
-
-<span class="sd">    This model cannot be edited since there is no endpoint to update files in CTFd.</span>
+<span class="sd">    Represents a hint in CTFd.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.CHALLENGE]</span>
-<span class="sd">        The type of the file. This should always be `&quot;challenge&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
-<span class="sd">    challenge_id : int</span>
-<span class="sd">        The ID of the challenge associated with the file</span>
+<span class="sd">        The ID of the hint</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
 <span class="sd">    challenge : int</span>
 <span class="sd">        Alias for `challenge_id`</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    html : str</span>
+<span class="sd">        The HTML content of the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    requirements : HintRequirementsDict | None</span>
+<span class="sd">        The requirements of the hint</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.CHALLENGE]</span>
-<span class="sd">        The type of the file. This should always be `&quot;challenge&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
+<span class="sd">        The ID of the hint, read-only</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
 <span class="sd">    challenge_id : int</span>
-<span class="sd">        The ID of the challenge associated with the file</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    html : str</span>
+<span class="sd">        The HTML content of the hint, read-only</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    requirements : HintRequirementsDict | None</span>
+<span class="sd">        The requirements of the hint</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="n">FileType</span><span class="o">.</span><span class="n">CHALLENGE</span><span class="p">]</span>
-    <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">,</span> <span class="s2">&quot;challenge&quot;</span><span class="p">)</span>
-    <span class="p">)</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">html</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">requirements</span><span class="p">:</span> <span class="n">HintRequirementsDict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2164,20 +2216,19 @@
 
 
 
-<h2 id="ctfdpy.models.files.PageFile" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">PageFile</span>
+<h2 id="ctfdpy.models.hints.LockedHint" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">LockedHint</span>
 
 
-<a href="#ctfdpy.models.files.PageFile" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#ctfdpy.models.hints.LockedHint" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.files.BaseFile" href="#ctfdpy.models.files.BaseFile">BaseFile</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.BaseHint" href="#ctfdpy.models.hints.BaseHint">BaseHint</a></code></p>
 
   
-      <p>Represents a page file in CTFd.</p>
-<p>This model cannot be edited since there is no endpoint to update files in CTFd.</p>
+      <p>Represents a locked hint in CTFd.</p>
 
 
 
@@ -2199,7 +2250,7 @@
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint</p>
             </div>
           </td>
           <td>
@@ -2209,11 +2260,11 @@
         <tr>
           <td><code>type</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.PAGE">PAGE</span>]</code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;page&quot;</span></code></p>
+              <p>The type of the hint</p>
             </div>
           </td>
           <td>
@@ -2221,41 +2272,13 @@
           </td>
         </tr>
         <tr>
-          <td><code>location</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>sha1sum</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>page_id</code></td>
+          <td><code>challenge</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the page associated with the file</p>
+              <p>Alias for <code class="highlight"><span class="n">challenge_id</span></code></p>
             </div>
           </td>
           <td>
@@ -2263,13 +2286,27 @@
           </td>
         </tr>
         <tr>
-          <td><code>page</code></td>
+          <td><code>challenge_id</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>Alias for <code class="highlight"><span class="n">page_id</span></code></p>
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>cost</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
             </div>
           </td>
           <td>
@@ -2292,57 +2329,46 @@
     </thead>
     <tbody>
         <tr>
-          <td><code><span title="ctfdpy.models.files.PageFile.id">id</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.LockedHint.id">id</span></code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the file</p>
+              <p>The ID of the hint, read-only</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.PageFile.type">type</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.LockedHint.type">type</span></code></td>
           <td>
-                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[<span title="ctfdpy.models.files.FileType.PAGE">PAGE</span>]</code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the file. This should always be <code class="highlight"><span class="s2">&quot;page&quot;</span></code></p>
+              <p>The type of the hint</p>
             </div>
           </td>
         </tr>
         <tr>
-          <td><code><span title="ctfdpy.models.files.PageFile.location">location</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.PageFile.sha1sum">sha1sum</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The SHA-1 checksum of the file</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.PageFile.page_id">page_id</span></code></td>
+          <td><code><span title="ctfdpy.models.hints.LockedHint.challenge_id">challenge_id</span></code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the page associated with the file</p>
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.LockedHint.cost">cost</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
             </div>
           </td>
         </tr>
@@ -2350,14 +2376,286 @@
   </table>
 
             <details class="quote">
-              <summary>Source code in <code>ctfdpy\models\files.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LockedHint</span><span class="p">(</span><span class="n">BaseHint</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a locked hint in CTFd.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">        The ID of the hint</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge : int</span>
+<span class="sd">        Alias for `challenge_id`</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    id : int</span>
+<span class="sd">        The ID of the hint, read-only</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="ctfdpy.models.hints.UnlockedHint" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">UnlockedHint</span>
+
+
+<a href="#ctfdpy.models.hints.UnlockedHint" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.BaseHint" href="#ctfdpy.models.hints.BaseHint">BaseHint</a></code></p>
+
+  
+      <p>Represents an unlocked hint in CTFd.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>id</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>type</code></td>
+          <td>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>challenge</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Alias for <code class="highlight"><span class="n">challenge_id</span></code></p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>challenge_id</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>content</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>html</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The HTML content of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>cost</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.id">id</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the hint, read-only</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.type">type</span></code></td>
+          <td>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.challenge_id">challenge_id</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.content">content</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.html">html</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The HTML content of the hint, read-only</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UnlockedHint.cost">cost</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+            <details class="quote">
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
@@ -2387,43 +2685,53 @@
 <span class="normal">175</span>
 <span class="normal">176</span>
 <span class="normal">177</span>
-<span class="normal">178</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PageFile</span><span class="p">(</span><span class="n">BaseFile</span><span class="p">):</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UnlockedHint</span><span class="p">(</span><span class="n">BaseHint</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Represents a page file in CTFd.</span>
-
-<span class="sd">    This model cannot be edited since there is no endpoint to update files in CTFd.</span>
+<span class="sd">    Represents an unlocked hint in CTFd.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.PAGE]</span>
-<span class="sd">        The type of the file. This should always be `&quot;page&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
-<span class="sd">    page_id : int</span>
-<span class="sd">        The ID of the page associated with the file</span>
-<span class="sd">    page : int</span>
-<span class="sd">        Alias for `page_id`</span>
+<span class="sd">        The ID of the hint</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge : int</span>
+<span class="sd">        Alias for `challenge_id`</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    html : str</span>
+<span class="sd">        The HTML content of the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    id : int</span>
-<span class="sd">        The ID of the file</span>
-<span class="sd">    type : Literal[FileType.PAGE]</span>
-<span class="sd">        The type of the file. This should always be `&quot;page&quot;`</span>
-<span class="sd">    location : str</span>
-<span class="sd">        The location of the file</span>
-<span class="sd">    sha1sum : str</span>
-<span class="sd">        The SHA-1 checksum of the file</span>
-<span class="sd">    page_id : int</span>
-<span class="sd">        The ID of the page associated with the file</span>
+<span class="sd">        The ID of the hint, read-only</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    html : str</span>
+<span class="sd">        The HTML content of the hint, read-only</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="n">FileType</span><span class="o">.</span><span class="n">PAGE</span><span class="p">]</span>
-    <span class="n">page_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;page_id&quot;</span><span class="p">,</span> <span class="s2">&quot;page&quot;</span><span class="p">))</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">html</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2452,11 +2760,11 @@
 
 
 
-<h2 id="ctfdpy.models.files.CreateFilePayload" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">CreateFilePayload</span>
+<h2 id="ctfdpy.models.hints.CreateHintPayload" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">CreateHintPayload</span>
 
 
-<a href="#ctfdpy.models.files.CreateFilePayload" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#ctfdpy.models.hints.CreateHintPayload" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
@@ -2464,7 +2772,7 @@
             Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.model.CreatePayloadModel" href="../model/#ctfdpy.models.model.CreatePayloadModel">CreatePayloadModel</a></code></p>
 
   
-      <p>Payload to create files in CTFd</p>
+      <p>Represents a hint create payload in CTFd.</p>
 
 
 
@@ -2480,41 +2788,13 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>files</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<span title="ctfdpy.models.files.MultipartFileTypes">MultipartFileTypes</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The files to create</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
           <td><code>type</code></td>
           <td>
-                <code><span title="ctfdpy.models.files.FileType">FileType</span></code>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The type of the files</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>challenge_id</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The ID of the challenge associated with the files. Required if <code class="highlight"><span class="nb">type</span></code> is <code class="highlight"><span class="s2">&quot;challenge&quot;</span></code></p>
+              <p>The type of the hint</p>
             </div>
           </td>
           <td>
@@ -2524,7 +2804,7 @@
         <tr>
           <td><code>challenge</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -2536,13 +2816,13 @@
           </td>
         </tr>
         <tr>
-          <td><code>page_id</code></td>
+          <td><code>challenge_id</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The ID of the page associated with the files. Required if <code class="highlight"><span class="nb">type</span></code> is <code class="highlight"><span class="s2">&quot;page&quot;</span></code></p>
+              <p>The ID of the challenge associated with the hint</p>
             </div>
           </td>
           <td>
@@ -2550,13 +2830,13 @@
           </td>
         </tr>
         <tr>
-          <td><code>page</code></td>
+          <td><code>cost</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>Alias for <code class="highlight"><span class="n">page_id</span></code></p>
+              <p>The cost of the hint</p>
             </div>
           </td>
           <td>
@@ -2564,98 +2844,39 @@
           </td>
         </tr>
         <tr>
-          <td><code>location</code></td>
+          <td><code>content</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The location to upload the files to. Cannot be specified if multiple files are provided</p>
+              <p>The content of the hint</p>
             </div>
           </td>
           <td>
               <em>required</em>
           </td>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><strong>Attributes:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
         <tr>
-          <td><code><span title="ctfdpy.models.files.CreateFilePayload.files">files</span></code></td>
+          <td><code>requirements</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<span title="ctfdpy.models.files.MultipartFileTypes">MultipartFileTypes</span>]</code>
+                <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.HintRequirementsDict" href="#ctfdpy.models.hints.HintRequirementsDict">HintRequirementsDict</a> | None</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The files to create</p>
+              <p>The requirements of the hint</p>
             </div>
           </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.CreateFilePayload.type">type</span></code></td>
           <td>
-                <code><span title="ctfdpy.models.files.FileType">FileType</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The type of the files</p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.CreateFilePayload.challenge_id">challenge_id</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The ID of the challenge associated with the files. Required if <code class="highlight"><span class="nb">type</span></code> is <code class="highlight"><span class="s2">&quot;challenge&quot;</span></code></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.CreateFilePayload.page_id">page_id</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The ID of the page associated with the files. Required if <code class="highlight"><span class="nb">type</span></code> is <code class="highlight"><span class="s2">&quot;page&quot;</span></code></p>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><code><span title="ctfdpy.models.files.CreateFilePayload.location">location</span></code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The location to upload the files to. Cannot be specified if multiple files are provided</p>
-            </div>
+              <em>required</em>
           </td>
         </tr>
     </tbody>
   </table>
 
             <details class="quote">
-              <summary>Source code in <code>ctfdpy\models\files.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
@@ -2681,10 +2902,248 @@
 <span class="normal">212</span>
 <span class="normal">213</span>
 <span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CreateHintPayload</span><span class="p">(</span><span class="n">CreatePayloadModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a hint create payload in CTFd.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge : int</span>
+<span class="sd">        Alias for `challenge_id`</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    requirements : HintRequirementsDict | None</span>
+<span class="sd">        The requirements of the hint</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">HintType</span>
+    <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">Field</span><span class="p">(</span><span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">,</span> <span class="s2">&quot;challenge&quot;</span><span class="p">)),</span>
+    <span class="p">)</span>
+    <span class="n">cost</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">requirements</span><span class="p">:</span> <span class="n">HintRequirementsDict</span> <span class="o">|</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="ctfdpy.models.hints.UpdateHintPayload" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">UpdateHintPayload</span>
+
+
+<a href="#ctfdpy.models.hints.UpdateHintPayload" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="ctfdpy.models.model.UpdatePayloadModel" href="../model/#ctfdpy.models.model.UpdatePayloadModel">UpdatePayloadModel</a></code></p>
+
+  
+      <p>Represents a hint update payload in CTFd.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>type</code></td>
+          <td>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>challenge</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Alias for <code class="highlight"><span class="n">challenge_id</span></code></p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>challenge_id</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>cost</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>content</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>requirements</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.HintRequirementsDict" href="#ctfdpy.models.hints.HintRequirementsDict">HintRequirementsDict</a> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The requirements of the hint. Specify <code class="highlight"><span class="kc">None</span></code> to remove the requirements</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Attributes:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UpdateHintPayload.type">type</span></code></td>
+          <td>
+                <code><span title="ctfdpy.models.hints.HintType">HintType</span></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UpdateHintPayload.challenge_id">challenge_id</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The ID of the challenge associated with the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UpdateHintPayload.cost">cost</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The cost of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UpdateHintPayload.content">content</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The content of the hint</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code><span title="ctfdpy.models.hints.UpdateHintPayload.requirements">requirements</span></code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="ctfdpy.models.hints.HintRequirementsDict" href="#ctfdpy.models.hints.HintRequirementsDict">HintRequirementsDict</a> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The requirements of the hint</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+            <details class="quote">
+              <summary>Source code in <code>ctfdpy\models\hints.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
@@ -2723,142 +3182,46 @@
 <span class="normal">254</span>
 <span class="normal">255</span>
 <span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
-<span class="normal">259</span>
-<span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
-<span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span>
-<span class="normal">279</span>
-<span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CreateFilePayload</span><span class="p">(</span><span class="n">CreatePayloadModel</span><span class="p">):</span>
+<span class="normal">257</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpdateHintPayload</span><span class="p">(</span><span class="n">UpdatePayloadModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Payload to create files in CTFd</span>
+<span class="sd">    Represents a hint update payload in CTFd.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    files : list[MultipartFileTypes]</span>
-<span class="sd">        The files to create</span>
-<span class="sd">    type : FileType</span>
-<span class="sd">        The type of the files</span>
-<span class="sd">    challenge_id : int | None</span>
-<span class="sd">        The ID of the challenge associated with the files. Required if `type` is `&quot;challenge&quot;`</span>
-<span class="sd">    challenge : int | None</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge : int</span>
 <span class="sd">        Alias for `challenge_id`</span>
-<span class="sd">    page_id : int | None</span>
-<span class="sd">        The ID of the page associated with the files. Required if `type` is `&quot;page&quot;`</span>
-<span class="sd">    page : int | None</span>
-<span class="sd">        Alias for `page_id`</span>
-<span class="sd">    location : str | None</span>
-<span class="sd">        The location to upload the files to. Cannot be specified if multiple files are provided</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    requirements : HintRequirementsDict | None</span>
+<span class="sd">        The requirements of the hint. Specify `None` to remove the requirements</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    files : list[MultipartFileTypes]</span>
-<span class="sd">        The files to create</span>
-<span class="sd">    type : FileType</span>
-<span class="sd">        The type of the files</span>
-<span class="sd">    challenge_id : int | None</span>
-<span class="sd">        The ID of the challenge associated with the files. Required if `type` is `&quot;challenge&quot;`</span>
-<span class="sd">    page_id : int | None</span>
-<span class="sd">        The ID of the page associated with the files. Required if `type` is `&quot;page&quot;`</span>
-<span class="sd">    location : str | None</span>
-<span class="sd">        The location to upload the files to. Cannot be specified if multiple files are provided</span>
+<span class="sd">    type : HintType</span>
+<span class="sd">        The type of the hint</span>
+<span class="sd">    challenge_id : int</span>
+<span class="sd">        The ID of the challenge associated with the hint</span>
+<span class="sd">    cost : int</span>
+<span class="sd">        The cost of the hint</span>
+<span class="sd">    content : str</span>
+<span class="sd">        The content of the hint</span>
+<span class="sd">    requirements : HintRequirementsDict | None</span>
+<span class="sd">        The requirements of the hint</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">files</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span>
-        <span class="n">MultipartFileTypes</span>
-    <span class="p">]</span>  <span class="c1"># This might slow down the code due to the use of unions</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">FileType</span> <span class="o">=</span> <span class="n">FileType</span><span class="o">.</span><span class="n">STANDARD</span>
-    <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">,</span> <span class="s2">&quot;challenge&quot;</span><span class="p">)</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">HintType</span> <span class="o">=</span> <span class="n">MISSING</span>
+    <span class="n">challenge_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">MISSING</span><span class="p">,</span> <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">,</span> <span class="s2">&quot;challenge&quot;</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="n">page_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">validate_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;page_id&quot;</span><span class="p">,</span> <span class="s2">&quot;page&quot;</span><span class="p">))</span>
-    <span class="n">location</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-
-    <span class="nd">@model_serializer</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">_model_ser</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateFilePayloadDict</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">}</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">challenge_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;challenge_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">challenge_id</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;page_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_id</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span>
-
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="p">],</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
-
-    <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-        <span class="c1"># Ensure type checkers see the correct return type</span>
-        <span class="k">def</span> <span class="nf">model_dump</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="o">*</span><span class="p">,</span>
-            <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
-            <span class="n">include</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">exclude</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">round_trip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">warnings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateFilePayloadDict</span><span class="p">:</span> <span class="o">...</span>
-
-    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">check_file_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateFilePayload</span><span class="p">:</span>
-        <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
-            <span class="k">case</span> <span class="n">FileType</span><span class="o">.</span><span class="n">STANDARD</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">challenge_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;Challenge ID and page ID must be None for standard files&quot;</span>
-                    <span class="p">)</span>
-            <span class="k">case</span> <span class="n">FileType</span><span class="o">.</span><span class="n">CHALLENGE</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">challenge_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;Challenge ID must be provided for challenge files&quot;</span>
-                    <span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Page ID must be None for challenge files&quot;</span><span class="p">)</span>
-            <span class="k">case</span> <span class="n">FileType</span><span class="o">.</span><span class="n">PAGE</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Page ID must be provided for page files&quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">challenge_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Challenge ID must be None for page files&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">check_file_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateFilePayload</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;At least one file must be provided&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Location cannot be specified when multiple files are provided&quot;</span>
-            <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">cost</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">MISSING</span>
+    <span class="n">content</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">MISSING</span>
+    <span class="n">requirements</span><span class="p">:</span> <span class="n">HintRequirementsDict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">MISSING</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2928,7 +3291,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Models">
+          <a href="../files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Files">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2938,20 +3301,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Models
+                Files
               </div>
             </div>
           </a>
         
         
           
-          <a href="../hints/" class="md-footer__link md-footer__link--next" aria-label="Next: Hints">
+          <a href="../../exceptions/" class="md-footer__link md-footer__link--next" aria-label="Next: Exceptions">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Hints
+                Exceptions
               </div>
             </div>
             <div class="md-footer__button md-icon">

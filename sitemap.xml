@@ -2,152 +2,162 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://127.0.0.1:8000/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/coverage/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/client/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/exceptions/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/api/api/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/api/files/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://127.0.0.1:8000/ctfdpy/api/hints/</loc>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/models/files/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://127.0.0.1:8000/ctfdpy/models/hints/</loc>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/ctfdpy/models/model/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/awards/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/brackets/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/challenges/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/comments/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/configs/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/files/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/flags/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/hints/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/notifications/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/pages/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/scoreboard/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/shares/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/statistics/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/submissions/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/tags/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/teams/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/tokens/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/topics/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/unlocks/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://127.0.0.1:8000/endpoints/users/</loc>
-         <lastmod>2024-04-05</lastmod>
+         <lastmod>2024-04-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

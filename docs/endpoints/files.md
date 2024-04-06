@@ -30,7 +30,7 @@ Represents a file in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the file |
-| `type` | `string` | The type of the file. Possible values are `#!python "standard"`, `#!python "challenge"` and `#!python "page"` |
+| `type` | `string` | The type of the file. Possible values are `"standard"`, `"challenge"` and `"page"` |
 | `location` | `string` | The location of the file |
 | `sha1sum` | `string` | The SHA1 checksum of the file |
 
@@ -51,7 +51,7 @@ Represents a file associated with a challenge in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the file |
-| `type` | `string` | The type of the file. Has to be set to `#!python "challenge"` |
+| `type` | `string` | The type of the file. Has to be set to `"challenge"` |
 | `location` | `string` | The location of the file |
 | `sha1sum` | `string` | The SHA1 checksum of the file |
 | `challenge_id` | `int` | The ID of the challenge that the file is associated with |
@@ -73,7 +73,7 @@ Represents a file associated with a page in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the file |
-| `type` | `string` | The type of the file. Has to be set to `#!python "page"` |
+| `type` | `string` | The type of the file. Has to be set to `"page"` |
 | `location` | `string` | The location of the file |
 | `sha1sum` | `string` | The SHA1 checksum of the file |
 | `page_id` | `int` | The ID of the page that the file is associated with |
@@ -88,7 +88,7 @@ Endpoint to get all files in bulk. Can be filtered by `type` and `location`.
 ### Query Parameters
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `type` | `string` | The type of the file to filter by. Possible values are `#!python "standard"`, `#!python "challenge"` and `#!python "page"` |
+| `type` | `string` | The type of the file to filter by. Possible values are `"standard"`, `"challenge"` and `"page"` |
 | `location` | `string` | The location of the file to filter by |
 | `q` | `string` | A search query to match against the given `field`. If this is specified, `field` must also be specified |
 | `field` | `string` | The field to search against, can be either `type` or `location`. If this is specified, `q` must also be specified. |
@@ -179,7 +179,7 @@ Endpoint to create a new file.
 | `challenge` (Optional) | The ID of the challenge to associate the file(s) with. This is required if the file is a challenge file. If both `challenge_id` and `challenge` is specified, `challenge_id` will be used. |
 | `page_id` (Optional) | The ID of the page(s) to associate the file with. This is required if the file is a page file. If both `page_id` and `page` is specified, `page_id` will be used. |
 | `page` (Optional) | The ID of the page to associate the file(s) with. This is required if the file is a page file. If both `page_id` and `page` is specified, `page_id` will be used. |
-| `type` (Optional) | The type of the file(s). Possible values are `#!python "standard"`, `#!python "challenge"` and `#!python "page"`. Defaults to `#!python "standard"` |
+| `type` (Optional) | The type of the file(s). Possible values are `"standard"`, `"challenge"` and `"page"`. Defaults to `"standard"` |
 | `location` | The location of the file. If multiple files are specified, this field cannot be set. |
 
 ### Response

@@ -10,15 +10,7 @@ Last Updated: 30/3/2024
 - [`UnlockedHint` Model](#unlockedhint-model)
 
 
-## Endpoints
-- [`GET /hints`](#get-hints)
-- [`POST /hints`](#post-hints)
-- [`GET /hints/{hint_id}`](#get-hintshint_id)
-- [`PATCH /hints/{hint_id}`](#patch-hintshint_id)
-- [`DELETE /hints/{hint_id}`](#delete-hintshint_id)
-
-
-## `Hint` Model
+### `Hint` Model
 Represents a hint.
 
 ```json
@@ -41,7 +33,7 @@ Represents a hint.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
@@ -50,7 +42,7 @@ Represents a hint.
 | `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
 
 
-## `LockedHint` Model
+### `LockedHint` Model
 Represents a hint locked for the current user.
 
 ```json
@@ -66,13 +58,13 @@ Represents a hint locked for the current user.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `cost` | `int` | The cost of the hint |
 
 
-## `UnlockedHint` Model
+### `UnlockedHint` Model
 Represents a hint unlocked for the current user.
 
 ```json
@@ -90,7 +82,7 @@ Represents a hint unlocked for the current user.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
@@ -98,23 +90,30 @@ Represents a hint unlocked for the current user.
 | `cost` | `int` | The cost of the hint |
 
 
-## `GET /hints`
-!!! note
-    This endpoint is only accessible to admins.
+## Endpoints
+- [`GET /hints`](#get-hints)
+- [`POST /hints`](#post-hints)
+- [`GET /hints/{hint_id}`](#get-hintshint_id)
+- [`PATCH /hints/{hint_id}`](#patch-hintshint_id)
+- [`DELETE /hints/{hint_id}`](#delete-hintshint_id)
+
+
+### `GET /hints`
+!!! note "This endpoint is only accessible to admins."
 
 Endpoint to get hints in bulk. Can be filtered by `type`, `challenge_id`, `content` and `cost`
 
-### Query Parameters
+#### Query Parameters
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `type` | `string` | The type of hint to get, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of hint to get, seems to always be `"standard"` |
 | `challenge_id` | `int` | The ID of the challenge to get hints for |
 | `content` | `string` | The content of the hint to match |
 | `cost` | `int` | The cost of the hint to match |
 | `q` | `string` | A search query to match against the given `field`. If this is specified, `field` must also be specified |
 | `field` | `string` | The field to search against, can be either `type` or `content`. If this is specified, `q` must also be specified. |
 
-### Response
+#### Response
 - `200 OK` - The hints were successfully retrieved
     - `list[`[`LockedHint`](#lockedhint-model)`]`
         ```json
@@ -151,33 +150,32 @@ Endpoint to get hints in bulk. Can be filtered by `type`, `challenge_id`, `conte
         }
         ```
 
-### Return Values
+#### Return Values
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `cost` | `int` | The cost of the hint |
 
 
-## `POST /hints`
-!!! note
-    This endpoint is only accessible to admins.
+### `POST /hints`
+!!! note "This endpoint is only accessible to admins."
 
 Endpoint to create a new hint.
 
-### JSON Parameters
+#### JSON Parameters
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
 | `cost` | `int` | The cost of the hint |
 | `requirements` (Optional) | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. |
 
 
-### Response
+#### Response
 - `200 OK` - The hint was successfully created
     - [`Hint`](#hint-model)
         ```json
@@ -208,11 +206,11 @@ Endpoint to create a new hint.
         }
         ```
 
-### Return Values
+#### Return Values
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
@@ -221,40 +219,13 @@ Endpoint to create a new hint.
 | `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
 
 
-## `GET /hints/{hint_id}`
+### `GET /hints/{hint_id}`
 Endpoint to get a hint by its ID.
 
-### Response
+#### Response
 - `200 OK` - The hint was successfully retrieved
-    - [`LockedHint`](#lockedhint-model)
-        ```json
-        {
-            "success": true,
-            "data": {
-                "id": 1,
-                "type": "string",
-                "challenge": 1,
-                "challenge_id": 1,
-                "cost": 1
-            }
-        }
-        ```
-    - [`UnlockedHint`](#unlockedhint-model)
-        ```json
-        {
-            "success": true,
-            "data": {
-                "id": 1,
-                "type": "string",
-                "challenge": 1,
-                "challenge_id": 1,
-                "content": "string",
-                "html": "string",
-                "cost": 1
-            }
-        }
-        ```
-    - [`Hint`](#hint-model)
+
+    === "Hint"
         ```json
         {
             "success": true,
@@ -271,6 +242,36 @@ Endpoint to get a hint by its ID.
                         1
                     ]
                 }
+            }
+        }
+        ```
+
+    === "Locked Hint"
+        ```json
+        {
+            "success": true,
+            "data": {
+                "id": 1,
+                "type": "string",
+                "challenge": 1,
+                "challenge_id": 1,
+                "cost": 1
+            }
+        }
+        ```
+
+    === "Unlocked Hint"
+        ```json
+        {
+            "success": true,
+            "data": {
+                "id": 1,
+                "type": "string",
+                "challenge": 1,
+                "challenge_id": 1,
+                "content": "string",
+                "html": "string",
+                "cost": 1
             }
         }
         ```
@@ -294,39 +295,59 @@ Endpoint to get a hint by its ID.
         }
         ```
 
-### Return Values
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
-| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
-| `challenge_id` | `int` | The ID of the challenge the hint is for |
-| `content` | `string` | The content of the hint |
-| `html` | `string` | The HTML content of the hint |
-| `cost` | `int` | The cost of the hint |
-| `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
+#### Return Values
+=== "Hint"
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    | `id` | `int` | The ID of the hint |
+    | `type` | `string` | The type of the hint, seems to always be `"standard"` |
+    | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+    | `challenge_id` | `int` | The ID of the challenge the hint is for |
+    | `content` | `string` | The content of the hint |
+    | `html` | `string` | The HTML content of the hint |
+    | `cost` | `int` | The cost of the hint |
+    | `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
+
+=== "Locked Hint"
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    | `id` | `int` | The ID of the hint |
+    | `type` | `string` | The type of the hint, seems to always be `"standard"` |
+    | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+    | `challenge_id` | `int` | The ID of the challenge the hint is for |
+    | `cost` | `int` | The cost of the hint |
+
+=== "Unlocked Hint"
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    | `id` | `int` | The ID of the hint |
+    | `type` | `string` | The type of the hint, seems to always be `"standard"` |
+    | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+    | `challenge_id` | `int` | The ID of the challenge the hint is for |
+    | `content` | `string` | The content of the hint |
+    | `html` | `string` | The HTML content of the hint |
+    | `cost` | `int` | The cost of the hint |
 
 
-## `PATCH /hints/{hint_id}`
-!!! note
-    This endpoint is only accessible to admins.
+### `PATCH /hints/{hint_id}`
+!!! note "This endpoint is only accessible to admins."
 
 Endpoint to update a hint by its ID.
 
-### JSON Parameters
+#### JSON Parameters
 
 !!! danger
     The effect of changing the values for `type` and `challenge_id` is unknown. Changing these values is not recommended.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
 | `cost` | `int` | The cost of the hint |
 | `requirements` (Optional) | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. |
 
-### Response
+#### Response
 - `200 OK` - The hint was successfully updated
     - [`Hint`](#hint-model)
         ```json
@@ -376,11 +397,11 @@ Endpoint to update a hint by its ID.
         }
         ```
 
-### Return Values
+#### Return Values
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
@@ -389,13 +410,12 @@ Endpoint to update a hint by its ID.
 | `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
 
 
-## `DELETE /hints/{hint_id}`
-!!! note
-    This endpoint is only accessible to admins.
+### `DELETE /hints/{hint_id}`
+!!! note "This endpoint is only accessible to admins."
 
 Endpoint to delete a hint by its ID.
 
-### Response
+#### Response
 - `200 OK` - The hint was successfully deleted
     - `application/json`
         ```json

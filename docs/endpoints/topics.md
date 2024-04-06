@@ -116,13 +116,13 @@ Endpoint to create a new [`Topic`](#topic-model) and/or a [`ChallengeTopic`](#ch
 
 ### JSON Parameters
 !!! info
-    If `type` is not set to `#!python "challenge"`, it will return a `400 Bad Request` response. However, if there is no topic with the specified `value`, a new topic will still be created.
+    If `type` is not set to `"challenge"`, it will return a `400 Bad Request` response. However, if there is no topic with the specified `value`, a new topic will still be created.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `value` | `string` | The value of the topic to create. If a topic with the same value does not exist, a new [`Topic`](#topic-model) will be created |
 | `topic_id` | `int` | The ID of the topic to associate with a challenge. If `value` is specified, this field is ignored |
-| `type` | `string` | The type of the topic to create. Can only be `#!python "challenge"` |
+| `type` | `string` | The type of the topic to create. Can only be `"challenge"` |
 
 ### Response
 - `200 OK` - The challenge topic was created successfully
@@ -151,7 +151,7 @@ Endpoint to create a new [`Topic`](#topic-model) and/or a [`ChallengeTopic`](#ch
         }
         ```
 
-        1. If a [`Topic`](#topic-model) is created but `type` is not set to `#!python "challenge"`, the `errors` field will not exist
+        1. If a [`Topic`](#topic-model) is created but `type` is not set to `"challenge"`, the `errors` field will not exist
 
 - `403 Forbidden` - You do not have the access to create topics
     - `application/json`
@@ -190,7 +190,7 @@ Endpoint to delete a [`ChallengeTopic`](#challengetopic-model).
 ### Query Parameters
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `type` | `string` | The type of the topic to delete. Can only be `#!python "challenge"` |
+| `type` | `string` | The type of the topic to delete. Can only be `"challenge"` |
 | `target_id` | `int` | The ID of the topic to delete. |
 
 ### Response
@@ -212,7 +212,7 @@ Endpoint to delete a [`ChallengeTopic`](#challengetopic-model).
         }
         ```
 
-        1. If `type` is not set to `#!python "challenge"`, the `errors` field will not exist
+        1. If `type` is not set to `"challenge"`, the `errors` field will not exist
 
 - `403 Forbidden` - You do not have the access to delete topics
     - `application/json`

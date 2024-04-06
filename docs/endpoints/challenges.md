@@ -71,16 +71,16 @@ Represents a challenge returned by the [`GET /challenges/{challenge_id}`](#get-c
 | `connection_info` | `string` | The connection information of the challenge |
 | `next_id` | `int` | The ID of the next challenge |
 | `category` | `string` | The category of the challenge |
-| `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
 | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-| `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 | `solves` | `int` | The number of solves for the challenge |
 | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
 | `attempts` | `int` | The number of attempts the current user has made on the challenge |
-| `files` | `#!python list[str]` | A list of files associated with the challenge |
-| `tags` | `#!python list[str]` | A list of tags associated with the challenge |
-| `hints` | `#!python list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
+| `files` | `list[str]` | A list of files associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
+| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
 | `view` | `string` | The view of the challenge. Used internally by the frontend |
 
 
@@ -143,21 +143,21 @@ Represents a challenge with a dynamic value. This model is returned by [`GET /ch
 | `initial` | `int` | The initial value of the challenge |
 | `decay` | `int` | The decay rate of the challenge |
 | `minimum` | `int` | The minimum value of the challenge |
-| `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
+| `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
 | `description` | `string` | The description of the challenge |
 | `connection_info` | `string` | The connection information of the challenge |
 | `next_id` | `int` | The ID of the next challenge |
 | `category` | `string` | The category of the challenge |
-| `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
 | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-| `type` | `#!python Literal["dynamic"]` | The type of the challenge. Has to be `#!python "dynamic"` for dynamic challenges |
-| `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+| `type` | `Literal["dynamic"]` | The type of the challenge. Has to be `"dynamic"` for dynamic challenges |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 | `solves` | `int` | The number of solves for the challenge |
 | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
 | `attempts` | `int` | The number of attempts the current user has made on the challenge |
-| `files` | `#!python list[str]` | A list of files associated with the challenge |
-| `tags` | `#!python list[str]` | A list of tags associated with the challenge |
-| `hints` | `#!python list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
+| `files` | `list[str]` | A list of files associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
+| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
 | `view` | `string` | The view of the challenge. Used internally by the frontend |
 
 
@@ -184,13 +184,13 @@ Represents a challenge with only partial details. This model is returned by [`GE
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
 | `name` | `string` | The name of the challenge |
 | `value` | `int` | The value of the challenge |
 | `solves` | `int` | The number of solves for the challenge |
 | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
 | `category` | `string` | The category of the challenge |
-| `tags` | `#!python list[str]` | A list of tags associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
 | `template` | `string` | The template of the challenge. Used internally by the frontend |
 | `script` | `string` | The script of the challenge. Used internally by the frontend |
 
@@ -200,7 +200,7 @@ Represents a challenge with only partial details. This model is returned by [`GE
 Represents a challenge with details hidden from the user. This is used for challenges with requirements not yet fulfilled by the user.
 
 !!! warning
-    This model is a hard-coded response and should not be confused with a [`Challenge`][challenge-model] that has `state` set to `#!python "hidden"`.
+    This model is a hard-coded response and should not be confused with a [`Challenge`][challenge-model] that has `state` set to `"hidden"`.
 
 ```json
 {
@@ -220,15 +220,15 @@ Represents a challenge with details hidden from the user. This is used for chall
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the challenge |
-| `type` | `string` | The type of the challenge. Will always be `#!python "hidden"` |
-| `name` | `string` | The name of the challenge. Will always be `#!python "???"` |
-| `value` | `int` | The value of the challenge. Will always be `#!python 0` |
-| `solves` | `int` | The number of solves for the challenge. Will always be `#!python None` |
-| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge. Will always be `#!python False` |
-| `category` | `string` | The category of the challenge. Will always be `#!python "???"` |
-| `tags` | `#!python list[str]` | A list of tags associated with the challenge. Will always be `#!python []` |
-| `template` | `string` | The template of the challenge. Will always be `#!python ""` |
-| `script` | `string` | The script of the challenge. Will always be `#!python ""` |
+| `type` | `string` | The type of the challenge. Will always be `"hidden"` |
+| `name` | `string` | The name of the challenge. Will always be `"???"` |
+| `value` | `int` | The value of the challenge. Will always be `0` |
+| `solves` | `int` | The number of solves for the challenge. Will always be `None` |
+| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge. Will always be `False` |
+| `category` | `string` | The category of the challenge. Will always be `"???"` |
+| `tags` | `list[str]` | A list of tags associated with the challenge. Will always be `[]` |
+| `template` | `string` | The template of the challenge. Will always be `""` |
+| `script` | `string` | The script of the challenge. Will always be `""` |
 
 
 ### `ChallengeRequirements` Model
@@ -245,8 +245,8 @@ Represents the requirements before a challenge can be accessed by a user.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `prerequisites` | `#!python list[int]` | A list of challenge IDs that must be solved before this challenge can be accessed |
-| `anonymize` | `bool` | Whether or not to anonymize the challenge instead of hiding it if the `prerequisites` are not met. If not specified, defaults to `#!python False` |
+| `prerequisites` | `list[int]` | A list of challenge IDs that must be solved before this challenge can be accessed |
+| `anonymize` | `bool` | Whether or not to anonymize the challenge instead of hiding it if the `prerequisites` are not met. If not specified, defaults to `False` |
 
 
 ### `LockedChallengeHint` Model
@@ -336,8 +336,8 @@ Represents a challenge type.
 | ---- | ---- | ----------- |
 | `id` | `string` | The ID of the challenge type |
 | `name` | `string` | The name of the challenge type |
-| `templates` | `#!python dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
-| `scripts` | `#!python dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
+| `templates` | `dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
+| `scripts` | `dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
 | `create` | `string` | The tempate for creating challenges of this type |
 
 
@@ -355,7 +355,7 @@ Represents a file associated with a challenge.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the file |
-| `type` | `#!python Literal["challenge"]` | The type of the file. Will always be `#!python "challenge"` |
+| `type` | `Literal["challenge"]` | The type of the file. Will always be `"challenge"` |
 | `location` | `string` | The location of the file |
 
 
@@ -418,7 +418,7 @@ Represents a topic associated with a challenge.
 
 ### `GET /challenges`
 !!! info
-    This endpoint only returns challenges that are visible to the user by default. To get all challenges, set the `view` query parameter to `#!python "admin"`.
+    This endpoint only returns challenges that are visible to the user by default. To get all challenges, set the `view` query parameter to `"admin"`.
 
 !!! warning
     The data returned by this endpoint only contains a part of each challenge's details. To get the full details of a challenge, use the [`GET /challenges/{challenge_id}`](#get-challengeschallenge_id) endpoint.
@@ -433,14 +433,14 @@ Endpoint to get challenges in bulk. Can be filtered by `name`, `max_attempts`, `
 | `value` | `int` | The value of the challenge to get challenges for |
 | `category` | `string` | The category of the challenge to get challenges for |
 | `type` | `string` | The type of the challenge to get challenges for |
-| `state` | `string` | The state of the challenge to get challenges for. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+| `state` | `string` | The state of the challenge to get challenges for. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
 | `q` | `string` | A search query to match against the given `field`. If this is specified, `field` must also be specified |
 | `field` | `string` | The field to search against, can be either `name`, `description`, `category`, `type` or `state`. If this is specified, `q` must also be specified |
-| `view` | `string` | The view of the challenges to output. If set to `#!python "admin"`, it will show all challenges including `hidden` and `locked` challenges. |
+| `view` | `string` | The view of the challenges to output. If set to `"admin"`, it will show all challenges including `hidden` and `locked` challenges. |
 
 #### Response
 - `200 OK` - The challenges were successfully retrieved
-    - `#!python list[`[`PartialChallenge`](#partialchallenge-model)`]`
+    - `list[`[`PartialChallenge`](#partialchallenge-model)`]`
         ```json
         {
             "success": true,
@@ -475,13 +475,13 @@ Endpoint to get challenges in bulk. Can be filtered by `name`, `max_attempts`, `
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
 | `name` | `string` | The name of the challenge |
 | `value` | `int` | The value of the challenge |
 | `solves` | `int` | The number of solves for the challenge |
 | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
 | `category` | `string` | The category of the challenge |
-| `tags` | `#!python list[str]` | A list of tags associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
 | `template` | `string` | The template of the challenge. Used internally by the frontend |
 | `script` | `string` | The script of the challenge. Used internally by the frontend |
 
@@ -502,9 +502,9 @@ Endpoint to create a new challenge. Accepts either form data or JSON data.
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `#!python Literal["standard"]` | The type of the challenge. Has to be `#!python "standard"` for standard challenges |
+    | `type` | `Literal["standard"]` | The type of the challenge. Has to be `"standard"` for standard challenges |
 
 === "Dynamic Challenges"
 
@@ -514,14 +514,14 @@ Endpoint to create a new challenge. Accepts either form data or JSON data.
     | `initial` | `int` | The initial value of the challenge |
     | `decay` | `int` | The decay rate of the challenge |
     | `minimum` | `int` | The minimum value of the challenge |
-    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
+    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
     | `description` | `string` | The description of the challenge |
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `#!python Literal["dynamic"]` | The type of the challenge. Has to be `#!python "dynamic"` for dynamic challenges |
+    | `type` | `Literal["dynamic"]` | The type of the challenge. Has to be `"dynamic"` for dynamic challenges |
 
 
 #### Response
@@ -630,10 +630,10 @@ Endpoint to create a new challenge. Accepts either form data or JSON data.
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-    | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 
 === "Dynamic Challenges"
 
@@ -645,15 +645,15 @@ Endpoint to create a new challenge. Accepts either form data or JSON data.
     | `initial` | `int` | The initial value of the challenge |
     | `decay` | `int` | The decay rate of the challenge |
     | `minimum` | `int` | The minimum value of the challenge |
-    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
+    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
     | `description` | `string` | The description of the challenge |
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-    | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 
 
 ### `POST /challenges/attempt`
@@ -670,7 +670,7 @@ Endpoint to send a challenge attempt.
 !!! info "Refer to [`ChallengeAttemptResult`](#challengeattemptresult-model) for possible responses"
 
 !!! warning
-    Even when the response code is `200 OK`, the `success` field might be `#!python False` if the attempt was not successful. Additionally, the `success` field does not mean that the attempt was correct. The only way to tell that the attempt is correct is when the `status` field is `#!python "correct"`.
+    Even when the response code is `200 OK`, the `success` field might be `False` if the attempt was not successful. Additionally, the `success` field does not mean that the attempt was correct. The only way to tell that the attempt is correct is when the `status` field is `"correct"`.
 
 - `200 OK` - The attempt was successful
     - [`ChallengeAttemptResult`](#challengeattemptresult-model)
@@ -684,7 +684,7 @@ Endpoint to send a challenge attempt.
         }
         ```
 
-        1. This may not always be `#!python True`.
+        1. This may not always be `True`.
 
 #### Return Values
 | Name | Type | Description |
@@ -700,7 +700,7 @@ Endpoint to get the available challenge types.
 
 #### Response
 - `200 OK` - The challenge types were successfully retrieved
-    - `#!python list[`[`ChallengeType`](#challengetype-model)`]`
+    - `list[`[`ChallengeType`](#challengetype-model)`]`
         ```json
         {
             "success": true,
@@ -729,8 +729,8 @@ Endpoint to get the available challenge types.
 | ---- | ---- | ----------- |
 | `id` | `string` | The ID of the challenge type |
 | `name` | `string` | The name of the challenge type |
-| `templates` | `#!python dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
-| `scripts` | `#!python dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
+| `templates` | `dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
+| `scripts` | `dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
 | `create` | `string` | The tempate for creating challenges of this type |
 
 
@@ -774,20 +774,6 @@ Endpoint to get a challenge by ID.
         }
         ```
 
-        | Name | Type | Description |
-        | ---- | ---- | ----------- |
-        | `id` | `int` | The ID of the challenge |
-        | `name` | `string` | The name of the challenge |
-        | `value` | `int` | The value of the challenge |
-        | `description` | `string` | The description of the challenge |
-        | `connection_info` | `string` | The connection information of the challenge |
-        | `next_id` | `int` | The ID of the next challenge |
-        | `category` | `string` | The category of the challenge |
-        | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
-        | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-        | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-        | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
-
     === "Dynamic Challenge"
 
         ```json
@@ -826,24 +812,6 @@ Endpoint to get a challenge by ID.
         }
         ```
 
-        | Name | Type | Description |
-        | ---- | ---- | ----------- |
-        | `id` | `int` | The ID of the challenge |
-        | `name` | `string` | The name of the challenge |
-        | `value` | `int` | The value of the challenge |
-        | `initial` | `int` | The initial value of the challenge |
-        | `decay` | `int` | The decay rate of the challenge |
-        | `minimum` | `int` | The minimum value of the challenge |
-        | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
-        | `description` | `string` | The description of the challenge |
-        | `connection_info` | `string` | The connection information of the challenge |
-        | `next_id` | `int` | The ID of the next challenge |
-        | `category` | `string` | The category of the challenge |
-        | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
-        | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-        | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-        | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
-
 - `403 Forbidden` - You are not allowed to access this endpoint
     - `application/json`
         ```json
@@ -869,19 +837,42 @@ Endpoint to get a challenge by ID.
         ```
 
 #### Return Values
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge |
-| `name` | `string` | The name of the challenge |
-| `value` | `int` | The value of the challenge |
-| `description` | `string` | The description of the challenge |
-| `connection_info` | `string` | The connection information of the challenge |
-| `next_id` | `int` | The ID of the next challenge |
-| `category` | `string` | The category of the challenge |
-| `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
-| `max_attempts` | `int` | The maximum number of attempts for the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-| `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+
+=== "Standard Challenge"
+
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    | `id` | `int` | The ID of the challenge |
+    | `name` | `string` | The name of the challenge |
+    | `value` | `int` | The value of the challenge |
+    | `description` | `string` | The description of the challenge |
+    | `connection_info` | `string` | The connection information of the challenge |
+    | `next_id` | `int` | The ID of the next challenge |
+    | `category` | `string` | The category of the challenge |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+    | `max_attempts` | `int` | The maximum number of attempts for the challenge |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+
+=== "Dynamic Challenge"
+
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    | `id` | `int` | The ID of the challenge |
+    | `name` | `string` | The name of the challenge |
+    | `value` | `int` | The value of the challenge |
+    | `initial` | `int` | The initial value of the challenge |
+    | `decay` | `int` | The decay rate of the challenge |
+    | `minimum` | `int` | The minimum value of the challenge |
+    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
+    | `description` | `string` | The description of the challenge |
+    | `connection_info` | `string` | The connection information of the challenge |
+    | `next_id` | `int` | The ID of the next challenge |
+    | `category` | `string` | The category of the challenge |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+    | `max_attempts` | `int` | The maximum number of attempts for the challenge |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
     
 
 ### `PATCH /challenges/{challenge_id}`
@@ -891,7 +882,7 @@ Endpoint to update a challenge by ID.
 
 #### JSON Parameters
 !!! warning
-    The `#!python "locked"` challenge state is not documented. Setting challenges to `#!python "locked"` is not recommended.
+    The `"locked"` challenge state is not documented. Setting challenges to `"locked"` is not recommended.
 
 === "Standard Challenges"
     | Name | Type | Description |
@@ -902,7 +893,7 @@ Endpoint to update a challenge by ID.
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
 
 === "Dynamic Challenges"
@@ -912,12 +903,12 @@ Endpoint to update a challenge by ID.
     | `initial` | `int` | The initial value of the challenge |
     | `decay` | `int` | The decay rate of the challenge |
     | `minimum` | `int` | The minimum value of the challenge |
-    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
+    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
     | `description` | `string` | The description of the challenge |
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
 
 #### Response
@@ -1034,10 +1025,10 @@ Endpoint to update a challenge by ID.
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-    | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 
 === "Dynamic Challenges"
 
@@ -1049,15 +1040,15 @@ Endpoint to update a challenge by ID.
     | `initial` | `int` | The initial value of the challenge |
     | `decay` | `int` | The decay rate of the challenge |
     | `minimum` | `int` | The minimum value of the challenge |
-    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `#!python "logarithmic"` and `#!python "linear"` |
+    | `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
     | `description` | `string` | The description of the challenge |
     | `connection_info` | `string` | The connection information of the challenge |
     | `next_id` | `int` | The ID of the next challenge |
     | `category` | `string` | The category of the challenge |
-    | `state` | `string` | The state of the challenge. Possible values are `#!python "visible"`, `#!python "hidden"`, and `#!python "locked"` |
+    | `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
-    | `type` | `string` | The type of the challenge. Possible values are `#!python "standard"` and `#!python "dynamic"` |
-    | `type_data` | `#!python dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+    | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
 
 
 ### `DELETE /challenges/{challenge_id}`
@@ -1101,7 +1092,7 @@ Endpoint to get the files associated with a challenge by ID.
 
 #### Response
 - `200 OK` - The files were successfully retrieved
-    - `#!python list[`[`ChallengeFileResponse`](#challenge-modelchallengefileresponse-model)`]`
+    - `list[`[`ChallengeFileResponse`](#challenge-modelchallengefileresponse-model)`]`
         ```json
         {
             "success": true,
@@ -1135,7 +1126,7 @@ Endpoint to get the files associated with a challenge by ID.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the file |
-| `type` | `string` | The type of the file, can only be `#!python "challenge"` |
+| `type` | `string` | The type of the file, can only be `"challenge"` |
 | `location` | `string` | The location of the file |
 
 
@@ -1146,7 +1137,7 @@ Endpoint to get the flags associated with a challenge by ID.
 
 #### Response
 - `200 OK` - The flags were successfully retrieved
-    - `#!python list[`[`Flag`][flag-model]`]`
+    - `list[`[`Flag`][flag-model]`]`
         ```json
         {
             "success": true,
@@ -1194,9 +1185,9 @@ Endpoint to get the flags associated with a challenge by ID.
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 
 ### `GET /challenges/{challenge_id}/hints`
@@ -1206,7 +1197,7 @@ Endpoint to get the hints associated with a challenge by ID.
 
 #### Response
 - `200 OK` - The hints were successfully retrieved
-    - `#!python list[`[`Hint`][hint-model]`]`
+    - `list[`[`Hint`][hint-model]`]`
         ```json
         {
             "success": true,
@@ -1270,7 +1261,7 @@ Endpoint to get the hints associated with a challenge by ID.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `#!python "standard"` |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
 | `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
 | `challenge_id` | `int` | The ID of the challenge the hint is for |
 | `content` | `string` | The content of the hint |
@@ -1318,7 +1309,7 @@ Endpoint to get the requirements associated with a challenge by ID.
 #### Return Values
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `prerequisites` | `#!python list[int]` | A list of prerequisite challenge IDs |
+| `prerequisites` | `list[int]` | A list of prerequisite challenge IDs |
 | `anonymize` | `bool` | Whether or not to anonymize the challenge |
 
 
@@ -1327,11 +1318,11 @@ Endpoint to get the solves associated with a challenge by ID.
 
 #### Query Parameters
 | Name | Type | Description |
-| `preview` | bool | If the CTF is currently frozen, the user is an admin, and this is set to `#!python True`, the response will only contain the solves prior to the freeze time. |
+| `preview` | bool | If the CTF is currently frozen, the user is an admin, and this is set to `True`, the response will only contain the solves prior to the freeze time. |
 
 #### Response
 - `200 OK` - The solves were successfully retrieved
-    - `#!python list[`[`ChallengeSolvesResponse`](#challengesolvesresponse-model)`]`
+    - `list[`[`ChallengeSolvesResponse`](#challengesolvesresponse-model)`]`
         ```json
         {
             "success": true,
@@ -1378,7 +1369,7 @@ Endpoint to get the tags associated with a challenge by ID.
 
 #### Response
 - `200 OK` - The tags were successfully retrieved
-    - `#!python list[`[`Tag`][tag-model]`]`
+    - `list[`[`Tag`][tag-model]`]`
         ```json
         {
             "success": true,
@@ -1423,7 +1414,7 @@ Endpoint to get the topics associated with a challenge by ID.
 
 #### Response
 - `200 OK` - The topics were successfully retrieved
-    - `#!python list[`[`ChallengeTopicResponse`](#challengetopicresponse-model)`]`
+    - `list[`[`ChallengeTopicResponse`](#challengetopicresponse-model)`]`
         ```json
         {
             "success": true,

@@ -36,9 +36,9 @@ Represents a flag in the CTFd database.
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 
 ## `FlagType` Model
@@ -108,9 +108,9 @@ Endpoint to get all flags in bulk. Can be filtered by `challenge_id`, flag `type
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 
 ## `POST /flags`
@@ -123,9 +123,9 @@ Endpoint to create a new flag.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 ### Response
 - `200 OK` - The flag was successfully created
@@ -168,9 +168,9 @@ Endpoint to create a new flag.
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 
 ## `GET /flags/types`
@@ -285,9 +285,9 @@ Endpoint to get a specific flag.
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 | `templates` | `dict` | The templates for creating and updating flags of this type |
 
 
@@ -301,9 +301,9 @@ Endpoint to update a specific flag.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 ### Response
 - `200 OK` - The flag was successfully updated
@@ -354,9 +354,9 @@ Endpoint to update a specific flag.
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the flag |
 | `challenge_id` | `int` | The ID of the challenge the flag is for |
-| `type` | `string` | The type of the flag, can be either `#!python "static"` or `#!python "regex"` |
+| `type` | `string` | The type of the flag, can be either `"static"` or `"regex"` |
 | `content` | `string` | The content of the flag |
-| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `#!python "case_insensitive"` or `#!python ""` |
+| `data` | `string` | The data of the flag, seems to only be used for the flag's case-insensitivity, can be either `"case_insensitive"` or `""` |
 
 
 ## `DELETE /flags/{flag_id}`

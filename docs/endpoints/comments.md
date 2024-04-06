@@ -38,7 +38,7 @@ Represents a comment in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -67,7 +67,7 @@ Represents a comment for a challenge in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -97,7 +97,7 @@ Represents a comment for a user in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -127,7 +127,7 @@ Represents a comment for a team in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -157,7 +157,7 @@ Represents a comment for a page in the CTFd database.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -286,7 +286,7 @@ Endpoint to get comments in bulk. Limited to 50 comments per request. Can be fil
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |
@@ -311,7 +311,7 @@ Endpoint to create a new comment.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `content` | `string` | The content of the comment |
-| `type` (Optional) | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` (Optional) | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `author_id` (Optional) | `int` | The ID of the author of the comment |
 | `date` (Optional) | `string` | The date the comment was created in ISO 8601 format |
 | `challenge_id` (Optional) | `int` | The ID of the challenge to associate the comment with |
@@ -434,7 +434,7 @@ Endpoint to create a new comment.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the comment |
-| `type` | `string` | The type of the comment. Possible values are `#!python "standard"`, `#!python "challenge"`, `#!python "user"`, `#!python "team"`, `#!python "page"` |
+| `type` | `string` | The type of the comment. Possible values are `"standard"`, `"challenge"`, `"user"`, `"team"`, `"page"` |
 | `content` | `string` | The content of the comment |
 | `date` | `string` | The date the comment was created in ISO 8601 format |
 | `author_id` | `int` | The ID of the author of the comment |

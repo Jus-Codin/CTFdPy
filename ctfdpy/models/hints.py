@@ -1,27 +1,19 @@
 from __future__ import annotations
 
 from enum import StrEnum
-from typing import TypedDict
 
 from pydantic import AliasChoices, Field
 
-from ctfdpy.models.model import CreatePayloadModel, Model, UpdatePayloadModel
+from ctfdpy.models.model import CreatePayloadModel, ResponseModel, UpdatePayloadModel
+from ctfdpy.types.hints import HintRequirementsDict
 from ctfdpy.utils import MISSING
 
 
-class HintType:
+class HintType(StrEnum):
     STANDARD = "standard"
 
 
-class HintRequirementsDict(TypedDict):
-    """
-    Represents the requirements of a hint in CTFd.
-    """
-
-    prerequisites: list[int]
-
-
-class BaseHint(Model):
+class BaseHint(ResponseModel):
     """
     A base hint model. Not meant to be instantiated directly.
 

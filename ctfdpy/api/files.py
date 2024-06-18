@@ -2,12 +2,17 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Annotated, Literal, overload
+from typing import TYPE_CHECKING, Annotated, Literal, overload
 
 from pydantic import Field, TypeAdapter, ValidationError
 
-from ctfdpy.api.api import API
-from ctfdpy.exceptions import CTFdpyModelValidationError
+from ctfdpy.exceptions import (
+    BadRequest,
+    Forbidden,
+    ModelValidationError,
+    NotFound,
+    Unauthorized,
+)
 from ctfdpy.models.files import (
     ChallengeFile,
     CreateFilePayload,
@@ -16,42 +21,31 @@ from ctfdpy.models.files import (
     PageFile,
     StandardFile,
 )
-from ctfdpy.utils import admin_only
+from ctfdpy.utils import MISSING, admin_only
+
+if TYPE_CHECKING:
+    from ctfdpy.client import APIClient
+
+list_file_adapter = TypeAdapter(
+    list[
+        Annotated[
+            StandardFile | ChallengeFile | PageFile, Field(..., discriminator="type")
+        ]
+    ]
+)
 
 file_adapter = TypeAdapter(
     Annotated[StandardFile | ChallengeFile | PageFile, Field(..., discriminator="type")]
 )
 
 
-class FilesAPI(API):
+class FilesAPI:
     """
-    Class for interacting with the `/api/v1/files` endpoint
-
-    Parameters
-    ----------
-    client : ctfdy.Client
-        The client to use for requests
-
-    Attributes
-    ----------
-    client : ctfdpy.Client
-        The client used for requests
-    url : str
-        The URL of the CTFd instance
-    session : httpx.HttpClient
-        The HTTP session used for requests
-
-    Methods
-    -------
-    list(type: FileType | None = None, location: str | None = None, q: str | None = None, field: Literal["type", "location"] | None = None) -> list[File]
-        Method to list all files with optional filtering
-    create(payload: CreateFilePayload | None = None, files: list[MultipartFileTypes] | None = None, file_paths: list[str | os.PathLike] | None = None, type: FileType | None = None, challenge_id: int | None = None, challenge: int | None = None, page_id: int | None = None, page: int | None = None, location: str | None = None) -> list[File]
-        Method to create files
-    get(file_id: int) -> File
-        Method to get a file by ID
-    delete(file_id: int) -> bool
-        Method to delete a file by ID
+    Interface for interacting with the `/api/v1/files` CTFd API endpoint.
     """
+
+    def __init__(self, client: APIClient):
+        self._client = client
 
     @admin_only
     def list(
@@ -65,64 +59,153 @@ class FilesAPI(API):
         """
         !!! note "This method is only available to admins"
 
-        Method to list all files with optional filtering
+        List all files with optional filtering.
 
         Parameters
         ----------
-        type : FileType | None
-            The type of the file to filter by, by default None
-        location : str | None
-            The location of the file to filter by, by default None
-        q : str | None
-            The query string to search for, by default None
-        field : Literal["type", "location"] | None
-            The field to search in, by default None
+        type: FileType | None
+            The type of file to filter by, defaults to None.
+        location: str | None
+            The location of the file to filter by, defaults to None.
+        q: str | None
+            The query string to search for, defaults to None.
+        field: Literal["type", "location"] | None
+            The field to search in, defaults to None.
 
         Returns
         -------
         list[StandardFile | ChallengeFile | PageFile]
-            A list of files
+            A list of files that match the query.
 
         Raises
         ------
         ValueError
-            If `q` is provided without `field` or vice versa
-        CTFdpyBadRequestException
-            An error occurred processing the provided or stored data
-        CTFdpyUnauthorizedException
-            The client is not authorized to access the endpoint
+            If q and field are not provided together.
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
 
         Examples
         --------
-        Get all files
+        Get all files:
+
         ```python
-        files = client.files.list()
+        files = ctfd.files.list()
         ```
 
-        Get all challenge files
+        Get all challenge files:
+
         ```python
-        files = client.files.list(type=FileType.CHALLENGE)
+        files = ctfd.files.list(type=FileType.CHALLENGE)
         ```
         """
-        # Check that q and field are both provided or neither are provided
+        # Check if q and field are both provided or both not provided
         if q is None != field is None:
-            raise ValueError("Both q and field must be provided")
+            raise ValueError("q and field must be provided together")
 
         params = {}
         if type is not None:
-            params["type"] = type
+            params["type"] = type.value
         if location is not None:
             params["location"] = location
         if q is not None:
             params["q"] = q
             params["field"] = field
 
-        result = self._get("/api/v1/files", params=params)
+        return self._client.request(
+            "GET",
+            "/api/v1/files",
+            params=params,
+            response_model=list_file_adapter,
+            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+        )
 
-        return [file_adapter.validate_python(file) for file in result["data"]]
+    @admin_only
+    async def async_list(
+        self,
+        *,
+        type: FileType | None = None,
+        location: str | None = None,
+        q: str | None = None,
+        field: Literal["type", "location"] | None = None,
+    ) -> list[StandardFile | ChallengeFile | PageFile]:
+        """
+        !!! note "This method is only available to admins"
+
+        List all files with optional filtering.
+
+        Parameters
+        ----------
+        type: FileType | None
+            The type of file to filter by, defaults to None.
+        location: str | None
+            The location of the file to filter by, defaults to None.
+        q: str | None
+            The query string to search for, defaults to None.
+        field: Literal["type", "location"] | None
+            The field to search in, defaults to None.
+
+        Returns
+        -------
+        list[StandardFile | ChallengeFile | PageFile]
+            A list of files that match the query.
+
+        Raises
+        ------
+        ValueError
+            If q and field are both provided or both not provided.
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
+
+        Examples
+        --------
+        Get all files:
+
+        ```python
+        files = await ctfd.files.async_list()
+        ```
+
+        Get all challenge files:
+
+        ```python
+        files = await ctfd.files.async_list(type=FileType.CHALLENGE)
+        ```
+        """
+        # Check if q and field are both provided or both not provided
+        if q is None != field is None:
+            raise ValueError("q and field must be provided together")
+
+        params = {}
+        if type is not None:
+            params["type"] = type.value
+        if location is not None:
+            params["location"] = location
+        if q is not None:
+            params["q"] = q
+            params["field"] = field
+
+        return await self._client.arequest(
+            "GET",
+            "/api/v1/files",
+            params=params,
+            response_model=list_file_adapter,
+            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+        )
 
     @overload
     def create(
+        self, *, payload: CreateFilePayload
+    ) -> list[StandardFile | ChallengeFile | PageFile]: ...
+
+    @overload
+    async def async_create(
         self, *, payload: CreateFilePayload
     ) -> list[StandardFile | ChallengeFile | PageFile]: ...
 
@@ -140,11 +223,25 @@ class FilesAPI(API):
         location: str | None = None,
     ) -> list[StandardFile | ChallengeFile | PageFile]: ...
 
+    @overload
+    async def async_create(
+        self,
+        *,
+        files: list[MultipartFileTypes] | None = None,
+        file_paths: list[str | os.PathLike] | None = None,
+        type: FileType = FileType.STANDARD,
+        challenge_id: int | None = None,
+        challenge: int | None = None,
+        page_id: int | None = None,
+        page: int | None = None,
+        location: str | None = None,
+    ) -> list[StandardFile | ChallengeFile | PageFile]: ...
+
     @admin_only
     def create(
         self,
         *,
-        payload: CreateFilePayload | None = None,
+        payload: CreateFilePayload = MISSING,
         files: list[MultipartFileTypes] | None = None,
         file_paths: list[str | os.PathLike] | None = None,
         type: FileType | None = None,
@@ -157,80 +254,59 @@ class FilesAPI(API):
         """
         !!! note "This method is only available to admins"
 
-        Method to create files
+        Create a new file.
 
         Parameters
         ----------
-        payload : CreateFilePayload
-            The payload to create the files with. If this is provided, no other parameters should be provided
-        files : list[MultipartFileTypes]
-            The files to upload. This can either be a `#!python FileContent` type or a tuple of length between 2 and 4
-            in the format `(filename, file, content_type, headers)`.
-        file_paths : list[str | os.PathLike] | None
-            The paths to the files to upload, by default None
-        type : FileType | None
-            The type of the files, by default None
-        challenge_id : int | None
-            The ID of the challenge associated with the files, by default None
-        challenge : int | None
-            Alias for `challenge_id`, by default None
-        page_id : int | None
-            The ID of the page associated with the files, by default None
-        page : int | None
-            Alias for `page_id`, by default None
-        location : str | None
-            The location to upload the files to, by default None
+        payload: CreateFilePayload
+            The payload to create the file with. If this is provided, no other parameter should be provided.
+        files: list[MultipartFileTypes] | None
+            The files to upload. This can either be a `#!python FileContent` or a tuple of length between 2 and 4
+            in the format `(filename, file, content_type, headers)`. Defaults to None.
+        file_paths: list[str | os.PathLike] | None
+            The paths to the files to upload. Defaults to None.
+        type: FileType | None
+            The type of the file, defaults to None.
+        challenge_id: int | None
+            The ID of the challenge to associate the file with, defaults to None.
+        page_id: int | None
+            The ID of the page to associate the file with, defaults to None.
+        location: str | None
+            The location on the server to upload the files to, defaults to None.
 
         Returns
         -------
         list[StandardFile | ChallengeFile | PageFile]
-            A list of files created
+            The files that were created.
 
         Raises
         ------
         ValueError
-            If no files are provided
+            If no files are provided.
         FileNotFoundError
-            If a provided file path does not exist
-        CTFdpyBadRequestException
-            An error occurred processing the provided or stored data
-        CTFdpyUnauthorizedException
-            The client is not authorized to access the endpoint
-        CTFdpyModelValidationError
-            The provided payload is invalid
+            If a file path does not exist.
+        ModelValidationError
+            If the payload is invalid.
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
 
         Examples
         --------
-        Create a file for a challenge with ID of `1`
+        Create a file for a challenge:
+
         ```python
-        # Using `CreateFilePayload`
-
-        payload = CreateFilePayload(
-            files=[("file.txt", open("file.txt", "rb"))],
+        files = ctfd.files.create(
+            files=[("filename.txt", open("/path/to/file.txt", "rb"))],
             type=FileType.CHALLENGE,
-            challenge_id=1
+            challenge_id=1,
         )
-        file = client.files.create(payload=payload)
-
-        # Or using file content
-
-        file = client.files.create(
-            files=[("file.txt", open("file.txt", "rb"))],
-            type=FileType.CHALLENGE,
-            challenge_id=1
-        )
-
-        # Or using file paths
-
-        file = client.files.create(
-            file_paths=[Path("file.txt")],
-            type=FileType.CHALLENGE,
-            challenge_id=1
-        )
-
         ```
         """
-        if payload is None:
+        if payload is MISSING:
             files = files or []
 
             if file_paths is not None:
@@ -252,82 +328,303 @@ class FilesAPI(API):
                     location=location,
                 )
             except ValidationError as e:
-                raise CTFdpyModelValidationError(e.errors())
+                raise ModelValidationError(e.errors()) from e
 
-        result = self._post(
+        return self._client.request(
+            "POST",
             "/api/v1/files",
-            headers={"Content-Type": "multipart/form-data"},
-            **payload.to_payload(),  # We need to unpack the payload
+            files=payload.dump_json(),
+            response_model=list_file_adapter,
+            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
         )
 
-        return [file_adapter.validate_python(file) for file in result["data"]]
+    @admin_only
+    async def async_create(
+        self,
+        *,
+        payload: CreateFilePayload = MISSING,
+        files: list[MultipartFileTypes] | None = None,
+        file_paths: list[str | os.PathLike] | None = None,
+        type: FileType | None = None,
+        challenge_id: int | None = None,
+        challenge: int | None = None,
+        page_id: int | None = None,
+        page: int | None = None,
+        location: str | None = None,
+    ) -> list[StandardFile | ChallengeFile | PageFile]:
+        """
+        !!! note "This method is only available to admins"
+
+        Create a new file.
+
+        Parameters
+        ----------
+        payload: CreateFilePayload
+            The payload to create the file with. If this is provided, no other parameter should be provided.
+        files: list[MultipartFileTypes] | None
+            The files to upload. This can either be a `#!python FileContent` or a tuple of length between 2 and 4
+            in the format `(filename, file, content_type, headers)`. Defaults to None.
+        file_paths: list[str | os.PathLike] | None
+            The paths to the files to upload. Defaults to None.
+        type: FileType | None
+            The type of the file, defaults to None.
+        challenge_id: int | None
+            The ID of the challenge to associate the file with, defaults to None.
+        page_id: int | None
+            The ID of the page to associate the file with, defaults to None.
+        location: str | None
+            The location on the server to upload the files to, defaults to None.
+
+        Returns
+        -------
+        list[StandardFile | ChallengeFile | PageFile]
+            The files that were created.
+
+        Raises
+        ------
+        ValueError
+            If no files are provided.
+        FileNotFoundError
+            If a file path does not exist.
+        ModelValidationError
+            If the payload is invalid.
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
+
+        Examples
+        --------
+        Create a file for a challenge:
+
+        ```python
+        files = await ctfd.files.async_create(
+            files=[("filename.txt", open("/path/to/file.txt", "rb"))],
+            type=FileType.CHALLENGE,
+            challenge_id=1,
+        )
+        ```
+        """
+        if payload is MISSING:
+            files = files or []
+
+            if file_paths is not None:
+                for file_path in file_paths:
+                    file_path = Path(file_path)
+                    if not file_path.exists():
+                        raise FileNotFoundError(f"File not found: {file_path}")
+                    files.append((file_path.name, file_path.open("rb")))
+
+            if len(files) == 0:
+                raise ValueError("At least one file must be provided")
+
+            try:
+                payload = CreateFilePayload(
+                    files=files,
+                    type=type,
+                    challenge_id=challenge_id or challenge,
+                    page_id=page_id or page,
+                    location=location,
+                )
+            except ValidationError as e:
+                raise ModelValidationError(e.errors()) from e
+
+        return await self._client.arequest(
+            "POST",
+            "/api/v1/files",
+            files=payload.dump_json(),
+            response_model=list_file_adapter,
+            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+        )
 
     @admin_only
     def get(self, file_id: int) -> StandardFile | ChallengeFile | PageFile:
         """
         !!! note "This method is only available to admins"
 
-        Method to get a file by ID
+        Get a file by its ID.
 
         Parameters
         ----------
-        file_id : int
-            The ID of the file to get
+        file_id: int
+            The ID of the file to get.
 
         Returns
         -------
         StandardFile | ChallengeFile | PageFile
-            The file
+            The file with the provided ID.
 
         Raises
         ------
-        CTFdpyNotFoundException
-            The file does not exist
-        CTFdpyUnauthorizedException
-            The client is not authorized to access the endpoint
+        BadRequest
+            An error occurred processing the provided or stored data.
+        NotFound
+            The file with the provided ID does not exist.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
 
         Examples
         --------
-        Get a file
+        Get a file by its ID:
+
         ```python
-        file = client.files.get(1)
+        file = ctfd.files.get(1)
         ```
         """
-        result = self._get(f"/api/v1/files/{file_id}")
+        return self._client.request(
+            "GET",
+            f"/api/v1/files/{file_id}",
+            response_model=file_adapter,
+            error_models={
+                400: BadRequest,
+                401: Unauthorized,
+                403: Forbidden,
+                404: NotFound,
+            },
+        )
 
-        return file_adapter.validate_python(result["data"])
+    @admin_only
+    async def async_get(self, file_id: int) -> StandardFile | ChallengeFile | PageFile:
+        """
+        !!! note "This method is only available to admins"
+
+        Get a file by its ID.
+
+        Parameters
+        ----------
+        file_id: int
+            The ID of the file to get.
+
+        Returns
+        -------
+        StandardFile | ChallengeFile | PageFile
+            The file with the provided ID.
+
+        Raises
+        ------
+        BadRequest
+            An error occurred processing the provided or stored data.
+        NotFound
+            The file with the provided ID does not exist.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
+
+        Examples
+        --------
+        Get a file by its ID:
+
+        ```python
+        file = await ctfd.files.async_get(1)
+        ```
+        """
+        return await self._client.arequest(
+            "GET",
+            f"/api/v1/files/{file_id}",
+            response_model=file_adapter,
+            error_models={
+                400: BadRequest,
+                401: Unauthorized,
+                403: Forbidden,
+                404: NotFound,
+            },
+        )
 
     @admin_only
     def delete(self, file_id: int) -> bool:
         """
         !!! note "This method is only available to admins"
 
-        Method to delete a file by ID
+        Delete a file by its ID.
 
         Parameters
         ----------
-        file_id : int
-            The ID of the file to delete
+        file_id: int
+            The ID of the file to delete.
 
         Returns
         -------
         bool
-            Whether the file was deleted
+            `#!python True` if the file was successfully deleted.
 
         Raises
         ------
-        CTFdpyNotFoundException
-            The file does not exist
-        CTFdpyUnauthorizedException
-            The client is not authorized to access the endpoint
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
+        NotFound
+            The file with the provided ID does not exist.
 
         Examples
         --------
-        Delete a file
+        Delete a file by its ID:
+
         ```python
-        client.files.delete(1)
+        success = ctfd.files.delete(1)
         ```
         """
-        result = self._delete(f"/api/v1/files/{file_id}")
+        return self._client.request(
+            "DELETE",
+            f"/api/v1/files/{file_id}",
+            error_models={
+                400: BadRequest,
+                401: Unauthorized,
+                403: Forbidden,
+                404: NotFound,
+            },
+        )
 
-        return result["success"]
+    @admin_only
+    async def async_delete(self, file_id: int) -> bool:
+        """
+        !!! note "This method is only available to admins"
+
+        Delete a file by its ID.
+
+        Parameters
+        ----------
+        file_id: int
+            The ID of the file to delete.
+
+        Returns
+        -------
+        bool
+            `#!python True` if the file was successfully deleted.
+
+        Raises
+        ------
+        BadRequest
+            An error occurred processing the provided or stored data.
+        AuthenticationRequired
+            You must be logged in to access this resource.
+        AdminOnly
+            You must be an admin to access this resource.
+        NotFound
+            The file with the provided ID does not exist.
+
+        Examples
+        --------
+        Delete a file by its ID:
+
+        ```python
+        success = await ctfd.files.async_delete(1)
+        ```
+        """
+        return await self._client.arequest(
+            "DELETE",
+            f"/api/v1/files/{file_id}",
+            error_models={
+                400: BadRequest,
+                401: Unauthorized,
+                403: Forbidden,
+                404: NotFound,
+            },
+        )

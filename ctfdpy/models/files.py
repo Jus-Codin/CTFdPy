@@ -1,28 +1,12 @@
 from __future__ import annotations
 
-from collections.abc import Mapping
 from enum import StrEnum
-from typing import IO, TYPE_CHECKING, Any, Literal, TypedDict
+from typing import TYPE_CHECKING, Any, Literal
 
 from pydantic import AliasChoices, Field, model_serializer, model_validator
 
-from ctfdpy.models.model import CreatePayloadModel, Model
-
-# From https://github.com/encode/httpx/blob/392dbe45f086d0877bd288c5d68abf860653b680/httpx/_types.py#L96-L106
-FileContent = IO[bytes] | bytes | str
-MultipartFileTypes = (
-    # file (or bytes)
-    FileContent
-    |
-    # (filename, file (or bytes))
-    tuple[str | None, FileContent]
-    |
-    # (filename, file (or bytes), content_type)
-    tuple[str | None, FileContent, str | None]
-    |
-    # (filename, file (or bytes), content_type, headers)
-    tuple[str | None, FileContent, str | None, Mapping[str, str]]
-)
+from ctfdpy.models.model import CreatePayloadModel, ResponseModel
+from ctfdpy.types.files import CreateFilePayloadDict, MultipartFileTypes
 
 
 class FileType(StrEnum):
@@ -31,11 +15,9 @@ class FileType(StrEnum):
     PAGE = "page"
 
 
-class BaseFile(Model, frozen=True):
+class BaseFile(ResponseModel):
     """
     A base file model. Not meant to be instantiated directly.
-
-    This model cannot be edited since there is no endpoint to update files in CTFd.
 
     Parameters
     ----------
@@ -178,12 +160,7 @@ class PageFile(BaseFile):
     page_id: int = Field(validation_alias=AliasChoices("page_id", "page"))
 
 
-class CreateFilePayloadDict(TypedDict):
-    files: list[tuple[Literal["file"], MultipartFileTypes]]
-    data: dict[str, str | int]
-
-
-class CreateFilePayload(CreatePayloadModel):
+class CreateFilePayload(CreatePayloadModel, arbitrary_types_allowed=True):
     """
     Payload to create files in CTFd
 
@@ -218,9 +195,7 @@ class CreateFilePayload(CreatePayloadModel):
         The location to upload the files to. Cannot be specified if multiple files are provided
     """
 
-    files: list[
-        MultipartFileTypes
-    ]  # This might slow down the code due to the use of unions
+    files: list[MultipartFileTypes]  # this might be slow...
     type: FileType = FileType.STANDARD
     challenge_id: int | None = Field(
         None, validation_alias=AliasChoices("challenge_id", "challenge")

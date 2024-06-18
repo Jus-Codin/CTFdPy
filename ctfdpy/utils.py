@@ -1,12 +1,19 @@
 from __future__ import annotations
 
 from functools import wraps
-from typing import TYPE_CHECKING
+from inspect import isawaitable
+from typing import TYPE_CHECKING, Any, Callable, ParamSpec, TypeVar
 
-from ctfdpy.exceptions import CTFdpyAdminOnlyException, CTFdpyUnauthorizedException
+from httpx import Response
+
+from ctfdpy.auth.unauth import UnauthAuthStrategy
+from ctfdpy.exceptions import AdminOnly, AuthenticationError, Forbidden
 
 if TYPE_CHECKING:
-    from ctfdpy.api.api import API
+    from ctfdpy.client import APIClient
+
+T = TypeVar("T")
+P = ParamSpec("P")
 
 
 class _MissingSentinel:
@@ -20,52 +27,81 @@ class _MissingSentinel:
         return "<MISSING>"
 
 
-MISSING = _MissingSentinel()
+MISSING: Any = _MissingSentinel()
 
 
-_non_admins = set()  # stores tokens and usernames of non-admins
+class _API:
+    _client: APIClient
 
 
-def admin_only(f):
+def auth_only(f: Callable[P, T]) -> Callable[P, T]:
     """
-    Wrapper for endpoints that require the user to be an admin
+    Wrapper for endpoints that require the user to be authenticated.
 
-    When a non-admin first tries to access an endpoint that requires admin privileges,
-    it will send a request to the endpoint. The endpoint will then raise a 403 error.
-    This wrapper will then cache the client's admin status and block all other requests to
-    admin-only endpoints.
+    Checks if the client has a token or credentials set and raises an `AuthenticationRequired` exception if not.
     """
 
     @wraps(f)
-    def wrapper(self: API, *args, **kwargs):
-        credentials = self.client.token or self.client.credentials[0]
+    def wrapper(self: _API, *args: P.args, **kwargs: P.kwargs) -> T:
+        if isinstance(self._client.auth, UnauthAuthStrategy):
+            raise AuthenticationError("Authentication required to access this endpoint")
 
-        if credentials in _non_admins:
-            raise CTFdpyAdminOnlyException("Admin user required")
+        return f(self, *args, **kwargs)
+
+    return wrapper
+
+
+def _is_non_admin_response(response: Response) -> bool:
+    try:
+        data = response.json()
+    except Exception:
+        return False
+
+    # This is a bit hacky, we look for the default Flask 403 error message
+    # This is dangerous as the endpoints might raise this error message as well
+    if data.get("message") == (
+        "You don't have the permission to access the requested"
+        " resource. It is either read-protected or not readable by the"
+        " server."
+    ):
+        return True
+
+    return False
+
+
+def admin_only(f: Callable[P, T]) -> Callable[P, T]:
+    """
+    Wrapper for endpoints that require the user to be an admin.
+
+    Raises an `AdminOnly` exception if the user is not an admin, or `AuthenticationRequired` if the user is not authenticated.
+    """
+
+    @wraps(f)
+    def wrapper(self: _API, *args: P.args, **kwargs: P.kwargs) -> T:
+        if isinstance(self._client.auth, UnauthAuthStrategy):
+            raise AuthenticationError("Authentication required to access this endpoint")
 
         try:
             result = f(self, *args, **kwargs)
-        except CTFdpyUnauthorizedException as e:
-            response = e.response
+        except Forbidden as e:
+            if _is_non_admin_response(e.response):
+                raise AdminOnly("Admin user required", response=e.response)
+            else:
+                raise e from e
 
-            data = None
-            try:
-                data = response.json()
-            except Exception:
-                pass
+        if isawaitable(result):
 
-            # This is a bit hacky, we look for the default Flask 403 error message
-            # This is dangerous as the endpoints might raise this error message as well
-            if data and data.get("message") == (
-                "You don't have the permission to access the requested"
-                " resource. It is either read-protected or not readable by the"
-                " server."
-            ):
-                raise CTFdpyAdminOnlyException("Admin user required", response=response)
+            async def _wrapper() -> T:
+                try:
+                    return await result
+                except Forbidden as e:
+                    if _is_non_admin_response(e.response):
+                        raise AdminOnly("Admin user required", response=e.response)
+                    else:
+                        raise e from e
 
-            _non_admins.add(credentials)
-            raise e
-
-        return result
+            return _wrapper()
+        else:
+            return result
 
     return wrapper

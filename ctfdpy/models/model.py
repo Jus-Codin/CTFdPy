@@ -17,12 +17,12 @@ class Model(BaseModel):
     )
 
 
-# class ResponseModel(Model, extra="allow"):
-#     """
-#     The base model for all response models returned by the API
+class ResponseModel(Model, frozen=True):
+    """
+    The base model for all response models
 
-#     This class should not be instantiated directly
-#     """
+    This class should not be instantiated directly
+    """
 
 
 class CreatePayloadModel(Model, extra="forbid"):
@@ -32,9 +32,9 @@ class CreatePayloadModel(Model, extra="forbid"):
     This class should not be instantiated directly
     """
 
-    def to_payload(self, **kwargs) -> dict[str, Any]:
+    def dump_json(self, **kwargs) -> dict[str, Any]:
         """
-        Converts the model to a payload
+        Dumps the model in JSON format
 
         Parameters
         ----------
@@ -56,9 +56,9 @@ class UpdatePayloadModel(Model, extra="forbid"):
     This class should not be instantiated directly
     """
 
-    def to_payload(self, **kwargs) -> dict[str, Any]:
+    def dump_json(self, **kwargs) -> dict[str, Any]:
         """
-        Converts the model to a payload
+        Dumps the model in JSON format
 
         Parameters
         ----------

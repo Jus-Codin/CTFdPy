@@ -22,7 +22,7 @@ TODO
 ## Documentation
 These pages go into detail about what you can do with the API
 
-- [API Reference](./ctfdpy/index.md)
+- [API Reference](./reference/index.md)
 - [Unofficial CTFd API Documentation](./endpoints/index.md)
 
 ## API Coverage

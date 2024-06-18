@@ -111,32 +111,32 @@ plugins:
 nav:
   - Home: index.md
   - CTFdPy:
-    - Home: ctfdpy/index.md
-    - Client: ctfdpy/client.md
+    - Home: reference/index.md
+    - Client: reference/client.md
     - API:
-      - Challenges: ctfdpy/api/challenges.md
-      - Files: ctfdpy/api/files.md
-      - Flags: ctfdpy/api/flags.md
-      - Hints: ctfdpy/api/hints.md
-      - Tags: ctfdpy/api/tags.md
-      - Topics: ctfdpy/api/topics.md
-      - Users: ctfdpy/api/users.md
+      - Challenges: reference/api/challenges.md
+      - Files: reference/api/files.md
+      - Flags: reference/api/flags.md
+      - Hints: reference/api/hints.md
+      - Tags: reference/api/tags.md
+      - Topics: reference/api/topics.md
+      - Users: reference/api/users.md
     - Models:
-      - Models: ctfdpy/models/model.md
-      - Challenges: ctfdpy/models/challenges.md
-      - Files: ctfdpy/models/files.md
-      - Flags: ctfdpy/models/flags.md
-      - Hints: ctfdpy/models/hints.md
-      - Tags: ctfdpy/models/tags.md
-      - Topics: ctfdpy/models/topics.md
-      - Users: ctfdpy/models/users.md
+      - Models: reference/models/model.md
+      - Challenges: reference/models/challenges.md
+      - Files: reference/models/files.md
+      - Flags: reference/models/flags.md
+      - Hints: reference/models/hints.md
+      - Tags: reference/models/tags.md
+      - Topics: reference/models/topics.md
+      - Users: reference/models/users.md
     - Types:
-      - API: ctfdpy/types/api.md
-      - Challenges: ctfdpy/types/challenges.md
-      - Files: ctfdpy/types/files.md
-      - Flags: ctfdpy/types/flags.md
-      - Hints: ctfdpy/types/hints.md
-    - Exceptions: ctfdpy/exceptions.md
+      - API: reference/types/api.md
+      - Challenges: reference/types/challenges.md
+      - Files: reference/types/files.md
+      - Flags: reference/types/flags.md
+      - Hints: reference/types/hints.md
+    - Exceptions: reference/exceptions.md
   - CTFd Endpoints:
     - Home: endpoints/index.md
     - Awards: endpoints/awards.md

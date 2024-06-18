@@ -11,9 +11,9 @@ hide:
 - [ ] Brackets
     - [ ] Endpoint Documentation
     - [ ] API Implementation
-- [ ] Challenges
+- [x] Challenges
     - [x] [Endpoint Documentation](./endpoints/challenges.md)
-    - [ ] API Implementation
+    - [x] [API Implementation](./ctfdpy/api/challenges.md)
 - [ ] Comments
     - [ ] Endpoint Documentation
     - [ ] API Implementation
@@ -23,9 +23,9 @@ hide:
 - [x] Files
     - [x] [Endpoint Documentation](./endpoints/files.md)
     - [x] [API Implementation](./ctfdpy/api/files.md)
-- [ ] Flags
+- [x] Flags
     - [x] [Endpoint Documentation](./endpoints/flags.md)
-    - [ ] API Implementation
+    - [x] [API Implementation](./ctfdpy/api/flags.md)
 - [x] Hints
     - [x] [Endpoint Documentation](./endpoints/hints.md)
     - [x] [API Implementation](./ctfdpy/api/hints.md)
@@ -47,18 +47,18 @@ hide:
 - [ ] Submissions
     - [ ] Endpoint Documentation
     - [ ] API Implementation
-- [ ] Tags
+- [x] Tags
     - [x] [Endpoint Documentation](./endpoints/tags.md)
-    - [ ] API Implementation
+    - [x] [API Implementation](./ctfdpy/api/tags.md)
 - [ ] Teams
     - [ ] Endpoint Documentation
     - [ ] API Implementation
 - [ ] Tokens
     - [ ] Endpoint Documentation
     - [ ] API Implementation
-- [ ] Topics
+- [x] Topics
     - [x] [Endpoint Documentation](./endpoints/topics.md)
-    - [ ] API Implementation
+    - [x] [API Implementation](./ctfdpy/api/topics.md)
 - [ ] Unlocks
     - [ ] Endpoint Documentation
     - [ ] API Implementation

@@ -1,7 +1,7 @@
 # Flags Endpoints
-CTFd Version: `3.7.0`
+CTFd Version: `3.7.1`
 
-Last Updated: 30/3/2024
+Last Updated: 6/6/2024
 
 
 ## Models
@@ -212,17 +212,15 @@ Endpoint to get a specific flag type.
 
 ### Response
 - `200 OK` - The flag type was successfully retrieved
-    - `dict[str,`[`FlagType`](#flagtype-model)`]`
+    - [`FlagType`](#flagtype-model)`
         ```json
         {
             "success": true,
             "data": {
-                "string": {
-                    "name": "string",
-                    "templates": {
-                        "create": "string",
-                        "update": "string"
-                    }
+                "name": "string",
+                "templates": {
+                    "create": "string",
+                    "update": "string"
                 }
             }
         }

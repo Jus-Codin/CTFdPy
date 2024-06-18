@@ -1,7 +1,7 @@
 # Topics Endpoints
-CTFd Version: `3.7.0`
+CTFd Version: `3.7.1`
 
-Last Updated: 30/3/2024
+Last Updated: 6/6/2024
 
 
 ## Models
@@ -100,6 +100,7 @@ Endpoint to get topics in bulk. Can be filtered by `value`.
         {
             "message": "string"
         }
+        ```
 
 ### Return Values
 | Name | Type | Description |
@@ -123,6 +124,7 @@ Endpoint to create a new [`Topic`](#topic-model) and/or a [`ChallengeTopic`](#ch
 | `value` | `string` | The value of the topic to create. If a topic with the same value does not exist, a new [`Topic`](#topic-model) will be created |
 | `topic_id` | `int` | The ID of the topic to associate with a challenge. If `value` is specified, this field is ignored |
 | `type` | `string` | The type of the topic to create. Can only be `"challenge"` |
+| `challenge_id` | `int` | The ID of the challenge to associate the topic with. Must be specified if `type` is set to `"challenge"` |
 
 ### Response
 - `200 OK` - The challenge topic was created successfully

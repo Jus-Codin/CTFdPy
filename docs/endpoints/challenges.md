@@ -1,402 +1,7 @@
 # Challenges Endpoints
-CTFd Version: `3.7.0`
+CTFd Version: `3.7.1`
 
-Last Updated: 30/3/2024
-
-
-## Models
-- [`Challenge` Model](#challenge-model)
-- [`DynamicChallenge` Model](#dynamicchallenge-model)
-- [`PartialChallenge` Model](#partialchallenge-model)
-- [`HiddenChallenge` Model](#hiddenchallenge-model)
-- [`LockedChallengeHint` Model](#lockedchallengehint-model)
-- [`UnlockedChallengeHint` Model](#unlockedchallengehint-model)
-- [`ChallengeAttemptResult` Model](#challengeattemptresult-model)
-- [`ChallengeType` Model](#challengetype-model)
-- [`ChallengeFileResponse` Model](#challengefileresponse-model)
-- [`ChallengeRequirements` Model](#challengerequirements-model)
-- [`ChallengeSolvesResponse` Model](#challengesolvesresponse-model)
-- [`ChallengeTopicResponse` Model](#challengetopicresponse-model)
-
-
-### `Challenge` Model
-Represents a challenge returned by the [`GET /challenges/{challenge_id}`](#get-challengeschallenge_id) endpoint.
-
-```json
-{
-    "id": 1,
-    "name": "string",
-    "value": 1,
-    "description": "string",
-    "connection_info": "string",
-    "next_id": 1,
-    "category": "string",
-    "state": "string",
-    "max_attempts": 1,
-    "type": "standard",
-    "type_data": {
-        "id": "standard",
-        "name": "standard",
-        "templates": {
-            "create": "string",
-            "update": "string",
-            "view": "string"
-        },
-        "scripts": {
-            "create": "string",
-            "update": "string",
-            "view": "string"
-        }
-    },
-    "solves": 1,
-    "solved_by_me": true,
-    "attempts": 1,
-    "files": [
-        "string"
-    ],
-    "tags": [
-        "string"
-    ],
-    "hints": [{ }],
-    "view": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge |
-| `name` | `string` | The name of the challenge |
-| `value` | `int` | The value of the challenge |
-| `description` | `string` | The description of the challenge |
-| `connection_info` | `string` | The connection information of the challenge |
-| `next_id` | `int` | The ID of the next challenge |
-| `category` | `string` | The category of the challenge |
-| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
-| `max_attempts` | `int` | The maximum number of attempts for the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
-| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
-| `solves` | `int` | The number of solves for the challenge |
-| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
-| `attempts` | `int` | The number of attempts the current user has made on the challenge |
-| `files` | `list[str]` | A list of files associated with the challenge |
-| `tags` | `list[str]` | A list of tags associated with the challenge |
-| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
-| `view` | `string` | The view of the challenge. Used internally by the frontend |
-
-
-### `DynamicChallenge` Model
-Represents a challenge with a dynamic value. This model is returned by [`GET /challenges`](#get-challenges).
-
-```json
-{
-    "id": 1,
-    "name": "string",
-    "value": 1, // (1)!
-    "initial": 1,
-    "decay": 1,
-    "minimum": 1,
-    "function": "string",
-    "description": "string",
-    "connection_info": "string",
-    "next_id": 1,
-    "category": "string",
-    "state": "string",
-    "max_attempts": 1,
-    "type": "dynamic",
-    "type_data": {
-        "id": "dynamic",
-        "name": "dynamic",
-        "templates": {
-            "create": "string",
-            "update": "string",
-            "view": "string"
-        },
-        "scripts": {
-            "create": "string",
-            "update": "string",
-            "view": "string"
-        }
-    },
-    "solves": 1,
-    "solved_by_me": true,
-    "attempts": 1,
-    "files": [
-        "string"
-    ],
-    "tags": [
-        "string"
-    ],
-    "hints": [{ }],
-    "view": "string"
-}
-```
-
-1. The `value` field is read-only and represents the current value of the challenge. This value is calculated based on the `initial`, `decay`, and `minimum` fields.
-
-!!! bug "As of CTFd `3.7.0`, the `function` field is not returned by the API."
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge |
-| `name` | `string` | The name of the challenge |
-| `value` | `int` | The value of the challenge. This is read-only for dynamic challenges |
-| `initial` | `int` | The initial value of the challenge |
-| `decay` | `int` | The decay rate of the challenge |
-| `minimum` | `int` | The minimum value of the challenge |
-| `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
-| `description` | `string` | The description of the challenge |
-| `connection_info` | `string` | The connection information of the challenge |
-| `next_id` | `int` | The ID of the next challenge |
-| `category` | `string` | The category of the challenge |
-| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
-| `max_attempts` | `int` | The maximum number of attempts for the challenge |
-| `type` | `Literal["dynamic"]` | The type of the challenge. Has to be `"dynamic"` for dynamic challenges |
-| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
-| `solves` | `int` | The number of solves for the challenge |
-| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
-| `attempts` | `int` | The number of attempts the current user has made on the challenge |
-| `files` | `list[str]` | A list of files associated with the challenge |
-| `tags` | `list[str]` | A list of tags associated with the challenge |
-| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
-| `view` | `string` | The view of the challenge. Used internally by the frontend |
-
-
-### `PartialChallenge` Model
-Represents a challenge with only partial details. This model is returned by [`GET /challenges`](#get-challenges).
-
-```json
-{
-    "id": 1,
-    "type": "string",
-    "name": "string",
-    "value": 1,
-    "solves": 1,
-    "solved_by_me": true,
-    "category": "string",
-    "tags": [
-        "string"
-    ],
-    "template": "string",
-    "script": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge |
-| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
-| `name` | `string` | The name of the challenge |
-| `value` | `int` | The value of the challenge |
-| `solves` | `int` | The number of solves for the challenge |
-| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
-| `category` | `string` | The category of the challenge |
-| `tags` | `list[str]` | A list of tags associated with the challenge |
-| `template` | `string` | The template of the challenge. Used internally by the frontend |
-| `script` | `string` | The script of the challenge. Used internally by the frontend |
-
-
-
-### `HiddenChallenge` Model
-Represents a challenge with details hidden from the user. This is used for challenges with requirements not yet fulfilled by the user.
-
-!!! warning
-    This model is a hard-coded response and should not be confused with a [`Challenge`][challenge-model] that has `state` set to `"hidden"`.
-
-```json
-{
-    "id": 1,
-    "type": "hidden",
-    "name": "???",
-    "value": 0,
-    "solves": null,
-    "solved_by_me": false,
-    "category": "???",
-    "tags": [],
-    "template": "",
-    "script": ""
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge |
-| `type` | `string` | The type of the challenge. Will always be `"hidden"` |
-| `name` | `string` | The name of the challenge. Will always be `"???"` |
-| `value` | `int` | The value of the challenge. Will always be `0` |
-| `solves` | `int` | The number of solves for the challenge. Will always be `None` |
-| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge. Will always be `False` |
-| `category` | `string` | The category of the challenge. Will always be `"???"` |
-| `tags` | `list[str]` | A list of tags associated with the challenge. Will always be `[]` |
-| `template` | `string` | The template of the challenge. Will always be `""` |
-| `script` | `string` | The script of the challenge. Will always be `""` |
-
-
-### `ChallengeRequirements` Model
-Represents the requirements before a challenge can be accessed by a user.
-
-```json
-{
-    "prerequisites": [
-        1
-    ],
-    "anonymize": false
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `prerequisites` | `list[int]` | A list of challenge IDs that must be solved before this challenge can be accessed |
-| `anonymize` | `bool` | Whether or not to anonymize the challenge instead of hiding it if the `prerequisites` are not met. If not specified, defaults to `False` |
-
-
-### `LockedChallengeHint` Model
-Represents a hint that is locked for the current user.
-
-```json
-{
-    "id": 1,
-    "cost": 1
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `cost` | `int` | The cost of the hint |
-
-
-### `UnlockedChallengeHint` Model
-Represents a hint that is unlocked for the current user.
-
-```json
-{
-    "id": 1,
-    "cost": 1,
-    "content": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `cost` | `int` | The cost of the hint |
-| `content` | `string` | The content of the hint |
-
-
-### `ChallengeAttemptResult` Model
-Represents the response from sending a challenge attempt.
-
-```json
-{
-    "status": "string",
-    "message": "string" // (1)!
-}
-```
-
-1. The message sometimes might be `#!json null`
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `status` | `string` | The status of the attempt |
-| `message` | `string` | The message from the attempt |
-
-??? info "Challenge Attempt Statuses"
-    | Status | Description | Status Code |
-    | ------ | ----------- | ----------- |
-    | `correct` | The attempt was correct | `200` |
-    | `incorrect` | The attempt was incorrect or you have 0 tries left for this challenge | `200 / 403` |
-    | `authentication_required` | The user must log in to send an attempt | `403` |
-    | `paused` | The CTF is paused | `403` |
-    | `ratelimited` | The user is submitting attempts too quickly | `429` |
-    | `already_solved` | The challenge has already been solved by the user or the user's team | `200` |
-
-
-### `ChallengeType` Model
-Represents a challenge type.
-
-```json
-{
-    "id": "string",
-    "name": "string",
-    "templates": {
-        "create": "string",
-        "update": "string",
-        "view": "string"
-    },
-    "scripts": {
-        "create": "string",
-        "update": "string",
-        "view": "string"
-    },
-    "create": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `string` | The ID of the challenge type |
-| `name` | `string` | The name of the challenge type |
-| `templates` | `dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
-| `scripts` | `dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
-| `create` | `string` | The tempate for creating challenges of this type |
-
-
-### `ChallengeFileResponse` Model
-Represents a file associated with a challenge.
-
-```json
-{
-    "id": 1,
-    "type": "challenge",
-    "location": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the file |
-| `type` | `Literal["challenge"]` | The type of the file. Will always be `"challenge"` |
-| `location` | `string` | The location of the file |
-
-
-### `ChallengeSolvesResponse` Model
-Represents a solve for a challenge
-
-```json
-{
-    "account_id": 1,
-    "name": "string",
-    "date": "string",
-    "account_url": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `account_id` | `int` | The ID of the account that solved the challenge |
-| `name` | `string` | The name of the account that solved the challenge |
-| `date` | `string` | The date the challenge was solved |
-| `account_url` | `string` | The URL of the account that solved the challenge |
-
-
-### `ChallengeTopicResponse` Model
-Represents a topic associated with a challenge.
-
-```json
-{
-    "id": 1,
-    "challenge_id": 1,
-    "topic_id": 1,
-    "value": "string"
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the challenge-topic association |
-| `challenge_id` | `int` | The ID of the challenge |
-| `topic_id` | `int` | The ID of the topic |
-| `value` | `string` | The value of the topic |
+Last Updated: 8/6/2024
 
 
 ## Endpoints
@@ -440,7 +45,7 @@ Endpoint to get challenges in bulk. Can be filtered by `name`, `max_attempts`, `
 
 #### Response
 - `200 OK` - The challenges were successfully retrieved
-    - `list[`[`PartialChallenge`](#partialchallenge-model)`]`
+    - `list[`[`ChallengePreview`](#challengepreview-model)`]`
         ```json
         {
             "success": true,
@@ -696,6 +301,8 @@ Refer to [`ChallengeAttemptResult`](#challengeattemptresult-model) for possible 
 
 
 ### `GET /challenges/types`
+!!! note "This endpoint is only accessible to admins."
+
 Endpoint to get the available challenge types.
 
 #### Response
@@ -769,7 +376,18 @@ Endpoint to get a challenge by ID.
                         "update": "string",
                         "view": "string"
                     }
-                }
+                },
+                "solves": 1,
+                "solved_by_me": true,
+                "attempts": 1,
+                "files": [
+                    "string"
+                ],
+                "tags": [
+                    "string"
+                ],
+                "hints": [{ }],
+                "view": "string"
             }
         }
         ```
@@ -807,7 +425,18 @@ Endpoint to get a challenge by ID.
                         "update": "string",
                         "view": "string"
                     }
-                }
+                },
+                "solves": 1,
+                "solved_by_me": true,
+                "attempts": 1,
+                "files": [
+                    "string"
+                ],
+                "tags": [
+                    "string"
+                ],
+                "hints": [{ }],
+                "view": "string"
             }
         }
         ```
@@ -853,8 +482,16 @@ Endpoint to get a challenge by ID.
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
     | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
     | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `solves` | `int` | The number of solves for the challenge |
+    | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
+    | `attempts` | `int` | The number of attempts for the challenge |
+    | `files` | `list[str]` | A list of files associated with the challenge |
+    | `tags` | `list[str]` | A list of tags associated with the challenge |
+    | `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
 
 === "Dynamic Challenge"
+
+    !!! bug "As of CTFd `3.7.0`, the `function` field is not returned by the API."
 
     | Name | Type | Description |
     | ---- | ---- | ----------- |
@@ -873,6 +510,12 @@ Endpoint to get a challenge by ID.
     | `max_attempts` | `int` | The maximum number of attempts for the challenge |
     | `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
     | `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+    | `solves` | `int` | The number of solves for the challenge |
+    | `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
+    | `attempts` | `int` | The number of attempts for the challenge |
+    | `files` | `list[str]` | A list of files associated with the challenge |
+    | `tags` | `list[str]` | A list of tags associated with the challenge |
+    | `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
     
 
 ### `PATCH /challenges/{challenge_id}`
@@ -1218,16 +861,6 @@ Endpoint to get the hints associated with a challenge by ID.
                 }
             ]
         }
-        ```json
-        {
-            "success": true,
-            "data": [
-                {
-                    "id": 1,
-                    "cost": 1
-                }
-            ]
-        }
         ```
 
 - `400 Bad Request` - An error occurred processing the provided or stored data
@@ -1446,6 +1079,505 @@ Endpoint to get the topics associated with a challenge by ID.
         ```
 
 #### Return Values
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge-topic association |
+| `challenge_id` | `int` | The ID of the challenge |
+| `topic_id` | `int` | The ID of the topic |
+| `value` | `string` | The value of the topic |
+
+
+## Models
+- [`Challenge` Model](#challenge-model)
+- [`DynamicChallenge` Model](#dynamicchallenge-model)
+- [`ChallengePreview` Model](#challengepreview-model)
+- [`HiddenChallenge` Model](#hiddenchallenge-model)
+- [`PartialChallenge` Model](#partialchallenge-model)
+- [`PartialDynamicChallenge` Model](#partialdynamicchallenge-model)
+- [`LockedChallengeHint` Model](#lockedchallengehint-model)
+- [`UnlockedChallengeHint` Model](#unlockedchallengehint-model)
+- [`ChallengeAttemptResult` Model](#challengeattemptresult-model)
+- [`ChallengeType` Model](#challengetype-model)
+- [`ChallengeFileResponse` Model](#challengefileresponse-model)
+- [`ChallengeRequirements` Model](#challengerequirements-model)
+- [`ChallengeSolvesResponse` Model](#challengesolvesresponse-model)
+- [`ChallengeTopicResponse` Model](#challengetopicresponse-model)
+
+
+### `Challenge` Model
+Represents a challenge returned by the [`GET /challenges/{challenge_id}`](#get-challengeschallenge_id) endpoint.
+
+```json
+{
+    "id": 1,
+    "name": "string",
+    "value": 1,
+    "description": "string",
+    "connection_info": "string",
+    "next_id": 1,
+    "category": "string",
+    "state": "string",
+    "max_attempts": 1,
+    "type": "standard",
+    "type_data": {
+        "id": "standard",
+        "name": "standard",
+        "templates": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        },
+        "scripts": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        }
+    },
+    "solves": 1,
+    "solved_by_me": true,
+    "attempts": 1,
+    "files": [
+        "string"
+    ],
+    "tags": [
+        "string"
+    ],
+    "hints": [{ }],
+    "view": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `name` | `string` | The name of the challenge |
+| `value` | `int` | The value of the challenge |
+| `description` | `string` | The description of the challenge |
+| `connection_info` | `string` | The connection information of the challenge |
+| `next_id` | `int` | The ID of the next challenge |
+| `category` | `string` | The category of the challenge |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+| `max_attempts` | `int` | The maximum number of attempts for the challenge |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+| `solves` | `int` | The number of solves for the challenge |
+| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
+| `attempts` | `int` | The number of attempts the current user has made on the challenge |
+| `files` | `list[str]` | A list of files associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
+| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
+| `view` | `string` | The view of the challenge. Used internally by the frontend |
+
+
+### `DynamicChallenge` Model
+Represents a dynamic challenge returned by the [`GET /challenges/{challenge_id}`](#get-challengeschallenge_id) endpoint.
+
+```json
+{
+    "id": 1,
+    "name": "string",
+    "value": 1, // (1)!
+    "initial": 1,
+    "decay": 1,
+    "minimum": 1,
+    "function": "string",
+    "description": "string",
+    "connection_info": "string",
+    "next_id": 1,
+    "category": "string",
+    "state": "string",
+    "max_attempts": 1,
+    "type": "dynamic",
+    "type_data": {
+        "id": "dynamic",
+        "name": "dynamic",
+        "templates": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        },
+        "scripts": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        }
+    },
+    "solves": 1,
+    "solved_by_me": true,
+    "attempts": 1,
+    "files": [
+        "string"
+    ],
+    "tags": [
+        "string"
+    ],
+    "hints": [{ }],
+    "view": "string"
+}
+```
+
+1. The `value` field is read-only and represents the current value of the challenge. This value is calculated based on the `initial`, `decay`, and `minimum` fields.
+
+!!! bug "As of CTFd versions `3.7.0` and below do not return the `function` field. This is fixed in `3.7.1`"
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `name` | `string` | The name of the challenge |
+| `value` | `int` | The value of the challenge. This is read-only for dynamic challenges |
+| `initial` | `int` | The initial value of the challenge |
+| `decay` | `int` | The decay rate of the challenge |
+| `minimum` | `int` | The minimum value of the challenge |
+| `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
+| `description` | `string` | The description of the challenge |
+| `connection_info` | `string` | The connection information of the challenge |
+| `next_id` | `int` | The ID of the next challenge |
+| `category` | `string` | The category of the challenge |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+| `max_attempts` | `int` | The maximum number of attempts for the challenge |
+| `type` | `Literal["dynamic"]` | The type of the challenge. Has to be `"dynamic"` for dynamic challenges |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+| `solves` | `int` | The number of solves for the challenge |
+| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
+| `attempts` | `int` | The number of attempts the current user has made on the challenge |
+| `files` | `list[str]` | A list of files associated with the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
+| `hints` | `list[` [`LockedChallengeHint`](#lockedchallengehint-model)<code>&#124;</code>[`UnlockedChallengeHint`](#unlockedchallengehint-model)`]` | A list of hints associated with the challenge |
+| `view` | `string` | The view of the challenge. Used internally by the frontend |
+
+
+### `ChallengePreview` Model
+Represents a preview of a challenge. This model is returned by [`GET /challenges`](#get-challenges).
+
+```json
+{
+    "id": 1,
+    "type": "string",
+    "name": "string",
+    "value": 1,
+    "solves": 1,
+    "solved_by_me": true,
+    "category": "string",
+    "tags": [
+        "string"
+    ],
+    "template": "string",
+    "script": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+| `name` | `string` | The name of the challenge |
+| `value` | `int` | The value of the challenge |
+| `solves` | `int` | The number of solves for the challenge |
+| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge |
+| `category` | `string` | The category of the challenge |
+| `tags` | `list[str]` | A list of tags associated with the challenge |
+| `template` | `string` | The template of the challenge. Used internally by the frontend |
+| `script` | `string` | The script of the challenge. Used internally by the frontend |
+
+
+
+### `HiddenChallenge` Model
+Represents a challenge with details hidden from the user. This is used for challenges with requirements not yet fulfilled by the user.
+
+!!! warning
+    This model is a hard-coded response and should not be confused with a [`Challenge`][challenge-model] that has `state` set to `"hidden"`.
+
+```json
+{
+    "id": 1,
+    "type": "hidden",
+    "name": "???",
+    "value": 0,
+    "solves": null,
+    "solved_by_me": false,
+    "category": "???",
+    "tags": [],
+    "template": "",
+    "script": ""
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `type` | `string` | The type of the challenge. Will always be `"hidden"` |
+| `name` | `string` | The name of the challenge. Will always be `"???"` |
+| `value` | `int` | The value of the challenge. Will always be `0` |
+| `solves` | `int` | The number of solves for the challenge. Will always be `None` |
+| `solved_by_me` | `bool` | Whether or not the current user has solved the challenge. Will always be `False` |
+| `category` | `string` | The category of the challenge. Will always be `"???"` |
+| `tags` | `list[str]` | A list of tags associated with the challenge. Will always be `[]` |
+| `template` | `string` | The template of the challenge. Will always be `""` |
+| `script` | `string` | The script of the challenge. Will always be `""` |
+
+
+### `PartialChallenge` Model
+Represents a partial challenge returned by the [`POST /challenges`](#post-challenges) and [`PATCH /challenges/{challenge_id}`](#patch-challengeschallenge_id) endpoint.
+
+```json
+{
+    "id": 1,
+    "name": "string",
+    "value": 1,
+    "description": "string",
+    "connection_info": "string",
+    "next_id": 1,
+    "category": "string",
+    "state": "string",
+    "max_attempts": 1,
+    "type": "standard",
+    "type_data": {
+        "id": "standard",
+        "name": "standard",
+        "templates": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        },
+        "scripts": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        }
+    }
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `name` | `string` | The name of the challenge |
+| `value` | `int` | The value of the challenge |    
+| `description` | `string` | The description of the challenge |
+| `connection_info` | `string` | The connection information of the challenge |
+| `next_id` | `int` | The ID of the next challenge |
+| `category` | `string` | The category of the challenge |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+| `max_attempts` | `int` | The maximum number of attempts for the challenge |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+
+
+### `PartialDynamicChallenge` Model
+Represents a partial dynamic challenge returned by the [`POST /challenges`](#post-challenges) and [`PATCH /challenges/{challenge_id}`](#patch-challengeschallenge_id) endpoint.
+
+```json
+{
+    "id": 1,
+    "name": "string",
+    "value": 1,
+    "initial": 1,
+    "decay": 1,
+    "minimum": 1,
+    "function": "string",
+    "description": "string",
+    "connection_info": "string",
+    "next_id": 1,
+    "category": "string",
+    "state": "string",
+    "max_attempts": 1,
+    "type": "dynamic",
+    "type_data": {
+        "id": "dynamic",
+        "name": "dynamic",
+        "templates": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        },
+        "scripts": {
+            "create": "string",
+            "update": "string",
+            "view": "string"
+        }
+    }
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the challenge |
+| `name` | `string` | The name of the challenge |
+| `value` | `int` | The value of the challenge |
+| `initial` | `int` | The initial value of the challenge |
+| `decay` | `int` | The decay rate of the challenge |
+| `minimum` | `int` | The minimum value of the challenge |
+| `function` | `string` | The function used to calculate the value of the challenge. Possible values are `"logarithmic"` and `"linear"` |
+| `description` | `string` | The description of the challenge |
+| `connection_info` | `string` | The connection information of the challenge |
+| `next_id` | `int` | The ID of the next challenge |
+| `category` | `string` | The category of the challenge |
+| `state` | `string` | The state of the challenge. Possible values are `"visible"`, `"hidden"`, and `"locked"` |
+| `max_attempts` | `int` | The maximum number of attempts for the challenge |
+| `type` | `string` | The type of the challenge. Possible values are `"standard"` and `"dynamic"` |
+| `type_data` | `dict[str, Any]` | The data associated with the challenge type. Used internally by the frontend |
+
+
+### `ChallengeRequirements` Model
+Represents the requirements before a challenge can be accessed by a user.
+
+```json
+{
+    "prerequisites": [
+        1
+    ],
+    "anonymize": false
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `prerequisites` | `list[int]` | A list of challenge IDs that must be solved before this challenge can be accessed |
+| `anonymize` | `bool` | Whether or not to anonymize the challenge instead of hiding it if the `prerequisites` are not met. If not specified, defaults to `False` |
+
+
+### `LockedChallengeHint` Model
+Represents a hint that is locked for the current user.
+
+```json
+{
+    "id": 1,
+    "cost": 1
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the hint |
+| `cost` | `int` | The cost of the hint |
+
+
+### `UnlockedChallengeHint` Model
+Represents a hint that is unlocked for the current user.
+
+```json
+{
+    "id": 1,
+    "cost": 1,
+    "content": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the hint |
+| `cost` | `int` | The cost of the hint |
+| `content` | `string` | The content of the hint |
+
+
+### `ChallengeAttemptResult` Model
+Represents the response from sending a challenge attempt.
+
+```json
+{
+    "status": "string",
+    "message": "string" // (1)!
+}
+```
+
+1. The message sometimes might be `#!json null`
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `status` | `string` | The status of the attempt |
+| `message` | `string` | The message from the attempt |
+
+??? info "Challenge Attempt Statuses"
+    | Status | Description | Status Code |
+    | ------ | ----------- | ----------- |
+    | `correct` | The attempt was correct | `200` |
+    | `incorrect` | The attempt was incorrect or you have 0 tries left for this challenge | `200 / 403` |
+    | `authentication_required` | The user must log in to send an attempt | `403` |
+    | `paused` | The CTF is paused | `403` |
+    | `ratelimited` | The user is submitting attempts too quickly | `429` |
+    | `already_solved` | The challenge has already been solved by the user or the user's team | `200` |
+
+
+### `ChallengeType` Model
+Represents a challenge type.
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "templates": {
+        "create": "string",
+        "update": "string",
+        "view": "string"
+    },
+    "scripts": {
+        "create": "string",
+        "update": "string",
+        "view": "string"
+    },
+    "create": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `string` | The ID of the challenge type |
+| `name` | `string` | The name of the challenge type |
+| `templates` | `dict[str, str]` | A dictionary of templates for creating, updating, and viewing challenges of this type |
+| `scripts` | `dict[str, str]` | A dictionary of scripts for creating, updating, and viewing challenges of this type |
+| `create` | `string` | The tempate for creating challenges of this type |
+
+
+### `ChallengeFileResponse` Model
+Represents a file associated with a challenge.
+
+```json
+{
+    "id": 1,
+    "type": "challenge",
+    "location": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the file |
+| `type` | `Literal["challenge"]` | The type of the file. Will always be `"challenge"` |
+| `location` | `string` | The location of the file |
+
+
+### `ChallengeSolvesResponse` Model
+Represents a solve for a challenge
+
+```json
+{
+    "account_id": 1,
+    "name": "string",
+    "date": "string",
+    "account_url": "string"
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `account_id` | `int` | The ID of the account that solved the challenge |
+| `name` | `string` | The name of the account that solved the challenge |
+| `date` | `string` | The date the challenge was solved |
+| `account_url` | `string` | The URL of the account that solved the challenge |
+
+
+### `ChallengeTopicResponse` Model
+Represents a topic associated with a challenge.
+
+```json
+{
+    "id": 1,
+    "challenge_id": 1,
+    "topic_id": 1,
+    "value": "string"
+}
+```
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `id` | `int` | The ID of the challenge-topic association |

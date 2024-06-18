@@ -1,5 +1,5 @@
 site_name: CTFdPy
-site_url: http://127.0.0.1:8000/
+site_url: https://jus-codin.github.io/CTFdPy/
 site_author: Jus-Codin
 site_description: >-
   CTFdPy is an API wrapper for CTFd, a Capture The Flag platform.
@@ -7,7 +7,7 @@ site_description: >-
   in Python to streamline the setup process for CTFs.
 
 repo_name: Jus-Codin/CTFdPy
-repo_url: https://github.com/Jus-Codin/CTFdPy
+repo_url: https://github.com/Jus-Codin/CTFdPy/
 
 theme:
   name: material
@@ -114,13 +114,28 @@ nav:
     - Home: ctfdpy/index.md
     - Client: ctfdpy/client.md
     - API:
-      - API: ctfdpy/api/api.md
+      - Challenges: ctfdpy/api/challenges.md
       - Files: ctfdpy/api/files.md
+      - Flags: ctfdpy/api/flags.md
       - Hints: ctfdpy/api/hints.md
+      - Tags: ctfdpy/api/tags.md
+      - Topics: ctfdpy/api/topics.md
+      - Users: ctfdpy/api/users.md
     - Models:
       - Models: ctfdpy/models/model.md
+      - Challenges: ctfdpy/models/challenges.md
       - Files: ctfdpy/models/files.md
+      - Flags: ctfdpy/models/flags.md
       - Hints: ctfdpy/models/hints.md
+      - Tags: ctfdpy/models/tags.md
+      - Topics: ctfdpy/models/topics.md
+      - Users: ctfdpy/models/users.md
+    - Types:
+      - API: ctfdpy/types/api.md
+      - Challenges: ctfdpy/types/challenges.md
+      - Files: ctfdpy/types/files.md
+      - Flags: ctfdpy/types/flags.md
+      - Hints: ctfdpy/types/hints.md
     - Exceptions: ctfdpy/exceptions.md
   - CTFd Endpoints:
     - Home: endpoints/index.md

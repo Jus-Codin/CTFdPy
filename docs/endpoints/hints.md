@@ -4,92 +4,6 @@ CTFd Version: `3.7.0`
 Last Updated: 30/3/2024
 
 
-## Models
-- [`Hint` Model](#hint-model)
-- [`LockedHint` Model](#lockedhint-model)
-- [`UnlockedHint` Model](#unlockedhint-model)
-
-
-### `Hint` Model
-Represents a hint.
-
-```json
-{
-    "id": 1,
-    "type": "string",
-    "challenge": 1,
-    "challenge_id": 1,
-    "content": "string",
-    "html": "string",
-    "cost": 1,
-    "requirements": {
-        "prerequisites": [
-            1
-        ]
-    }
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `"standard"` |
-| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
-| `challenge_id` | `int` | The ID of the challenge the hint is for |
-| `content` | `string` | The content of the hint |
-| `html` | `string` | The HTML content of the hint |
-| `cost` | `int` | The cost of the hint |
-| `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
-
-
-### `LockedHint` Model
-Represents a hint locked for the current user.
-
-```json
-{
-    "id": 1,
-    "type": "string",
-    "challenge": 1,
-    "challenge_id": 1,
-    "cost": 1
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `"standard"` |
-| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
-| `challenge_id` | `int` | The ID of the challenge the hint is for |
-| `cost` | `int` | The cost of the hint |
-
-
-### `UnlockedHint` Model
-Represents a hint unlocked for the current user.
-
-```json
-{
-    "id": 1,
-    "type": "string",
-    "challenge": 1,
-    "challenge_id": 1,
-    "content": "string",
-    "html": "string",
-    "cost": 1
-}
-```
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `id` | `int` | The ID of the hint |
-| `type` | `string` | The type of the hint, seems to always be `"standard"` |
-| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
-| `challenge_id` | `int` | The ID of the challenge the hint is for |
-| `content` | `string` | The content of the hint |
-| `html` | `string` | The HTML content of the hint |
-| `cost` | `int` | The cost of the hint |
-
-
 ## Endpoints
 - [`GET /hints`](#get-hints)
 - [`POST /hints`](#post-hints)
@@ -439,4 +353,90 @@ Endpoint to delete a hint by its ID.
             "message": "string"
         }
         ```
+
+
+## Models
+- [`Hint` Model](#hint-model)
+- [`LockedHint` Model](#lockedhint-model)
+- [`UnlockedHint` Model](#unlockedhint-model)
+
+
+### `Hint` Model
+Represents a hint.
+
+```json
+{
+    "id": 1,
+    "type": "string",
+    "challenge": 1,
+    "challenge_id": 1,
+    "content": "string",
+    "html": "string",
+    "cost": 1,
+    "requirements": {
+        "prerequisites": [
+            1
+        ]
+    }
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the hint |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
+| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+| `challenge_id` | `int` | The ID of the challenge the hint is for |
+| `content` | `string` | The content of the hint |
+| `html` | `string` | The HTML content of the hint |
+| `cost` | `int` | The cost of the hint |
+| `requirements` | `dict` | The hint's requirements. This dictionary has a single item, `prerequisites`, which is a list of hint IDs required to unlock before this one. (Optional) |
+
+
+### `LockedHint` Model
+Represents a hint locked for the current user.
+
+```json
+{
+    "id": 1,
+    "type": "string",
+    "challenge": 1,
+    "challenge_id": 1,
+    "cost": 1
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the hint |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
+| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+| `challenge_id` | `int` | The ID of the challenge the hint is for |
+| `cost` | `int` | The cost of the hint |
+
+
+### `UnlockedHint` Model
+Represents a hint unlocked for the current user.
+
+```json
+{
+    "id": 1,
+    "type": "string",
+    "challenge": 1,
+    "challenge_id": 1,
+    "content": "string",
+    "html": "string",
+    "cost": 1
+}
+```
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `id` | `int` | The ID of the hint |
+| `type` | `string` | The type of the hint, seems to always be `"standard"` |
+| `challenge` | `int` | The ID of the challenge the hint is for (I'm not sure why this field exists) |
+| `challenge_id` | `int` | The ID of the challenge the hint is for |
+| `content` | `string` | The content of the hint |
+| `html` | `string` | The HTML content of the hint |
+| `cost` | `int` | The cost of the hint |
         

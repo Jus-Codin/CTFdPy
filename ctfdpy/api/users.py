@@ -122,10 +122,10 @@ class UsersAPI:
         )
 
     @overload
-    def create(self, *, payload: CreateUserPayload) -> UserAdminView: ...
+    def create(self, *, payload: CreateUserPayload, notify: bool = False) -> UserAdminView: ...
 
     @overload
-    async def async_create(self, *, payload: CreateUserPayload) -> UserAdminView: ...
+    async def async_create(self, *, payload: CreateUserPayload, notify: bool = False) -> UserAdminView: ...
 
     @overload
     def create(
@@ -145,6 +145,7 @@ class UsersAPI:
         bracket_id: int | None = None,
         fields: list | None = None,
         secret: str | None = None,
+        notify: bool = False,
     ) -> UserAdminView: ...
 
     @overload
@@ -165,6 +166,7 @@ class UsersAPI:
         bracket_id: int | None = None,
         fields: list | None = None,
         secret: str | None = None,
+        notify: bool = False,
     ) -> UserAdminView: ...
 
     @admin_only
@@ -172,98 +174,64 @@ class UsersAPI:
         self,
         *,
         payload: CreateUserPayload = MISSING,
-        name: str | None = None,
-        email: str | None = None,
-        password: str | None = None,
-        type: UserType = UserType.USER,
-        banned: bool = False,
-        hidden: bool = False,
-        verified: bool = False,
-        language: str | None = None,
-        website: str | None = None,
-        affiliation: str | None = None,
-        country: str | None = None,
-        bracket_id: int | None = None,
-        fields: list | None = None,
-        secret: str | None = None,
+        notify: bool = False,
+        **kwargs,
     ) -> UserAdminView:
         if payload is MISSING:
             try:
-                payload = CreateUserPayload(
-                    name=name,
-                    email=email,
-                    password=password,
-                    type=type,
-                    banned=banned,
-                    hidden=hidden,
-                    verified=verified,
-                    language=language,
-                    website=website,
-                    affiliation=affiliation,
-                    country=country,
-                    bracket_id=bracket_id,
-                    fields=fields,
-                    secret=secret,
-                )
+                payload = CreateUserPayload.model_validate(kwargs)
             except ValidationError as e:
                 raise ModelValidationError(e.errors()) from e
 
-        return self._client.request(
-            "POST",
-            "/api/v1/users",
-            json=payload.dump_json(),
-            response_model=UserAdminView,
-            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
-        )
+        if notify:
+            return self._client.request(
+                "POST",
+                "/api/v1/users",
+                params={"notify": "true"},
+                json=payload.dump_json(),
+                response_model=UserAdminView,
+                error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+            )
+        else:
+            return self._client.request(
+                "POST",
+                "/api/v1/users",
+                json=payload.dump_json(),
+                response_model=UserAdminView,
+                error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+            )
 
     @admin_only
     async def async_create(
         self,
         *,
         payload: CreateUserPayload = MISSING,
-        name: str | None = None,
-        email: str | None = None,
-        password: str | None = None,
-        type: UserType = UserType.USER,
-        banned: bool = False,
-        hidden: bool = False,
-        verified: bool = False,
-        language: str | None = None,
-        website: str | None = None,
-        affiliation: str | None = None,
-        country: str | None = None,
-        bracket_id: int | None = None,
-        fields: list | None = None,
-        secret: str | None = None,
+        notify: bool = False,
+        **kwargs,
     ) -> UserAdminView:
         if payload is MISSING:
             try:
-                payload = CreateUserPayload(
-                    name=name,
-                    email=email,
-                    password=password,
-                    type=type,
-                    banned=banned,
-                    hidden=hidden,
-                    verified=verified,
-                    language=language,
-                    website=website,
-                    affiliation=affiliation,
-                    country=country,
-                    bracket_id=bracket_id,
-                    fields=fields,
-                    secret=secret,
-                )
+                payload = CreateUserPayload.model_validate(kwargs)
             except ValidationError as e:
                 raise ModelValidationError(e.errors()) from e
 
-        return await self._client.arequest(
-            "POST",
-            "/api/v1/users",
-            json=payload.dump_json(),
-            response_model=UserAdminView,
-            error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
-        )
+        if notify:
+            return await self._client.arequest(
+                "POST",
+                "/api/v1/users",
+                params={"notify": "true"},
+                json=payload.dump_json(),
+                response_model=UserAdminView,
+                error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+            )
+        else:
+            return await self._client.arequest(
+                "POST",
+                "/api/v1/users",
+                json=payload.dump_json(),
+                response_model=UserAdminView,
+                error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
+            )
 
     @auth_only
     def get_self(self) -> UserPrivateView:

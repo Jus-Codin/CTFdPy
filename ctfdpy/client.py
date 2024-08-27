@@ -456,6 +456,7 @@ class APIClient(Generic[A], APIMixin):
         )
 
     @overload
+    @classmethod
     def from_env(
         cls: Type[APIClient[AS]],
         *,

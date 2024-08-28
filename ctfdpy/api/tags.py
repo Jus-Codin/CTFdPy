@@ -96,7 +96,7 @@ class TagsAPI:
             "POST",
             "/api/v1/tags",
             json={"value": value, "challenge_id": challenge_id},
-            model=Tag,
+            response_model=Tag,
             error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
         )
 
@@ -106,7 +106,7 @@ class TagsAPI:
             "POST",
             "/api/v1/tags",
             json={"value": value, "challenge_id": challenge_id},
-            model=Tag,
+            response_model=Tag,
             error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
         )
 
@@ -115,7 +115,7 @@ class TagsAPI:
         return self._client.request(
             "GET",
             f"/api/v1/tags/{tag_id}",
-            model=Tag,
+            response_model=Tag,
             error_models={
                 400: BadRequest,
                 401: Unauthorized,
@@ -129,7 +129,7 @@ class TagsAPI:
         return await self._client.request(
             "GET",
             f"/api/v1/tags/{tag_id}",
-            model=Tag,
+            response_model=Tag,
             error_models={
                 400: BadRequest,
                 401: Unauthorized,
@@ -157,7 +157,7 @@ class TagsAPI:
             "PATCH",
             f"/api/v1/tags/{tag_id}",
             json=payload,
-            model=Tag,
+            response_model=Tag,
             error_models={
                 400: BadRequest,
                 401: Unauthorized,
@@ -185,7 +185,7 @@ class TagsAPI:
             "PATCH",
             f"/api/v1/tags/{tag_id}",
             json=payload,
-            model=Tag,
+            response_model=Tag,
             error_models={
                 400: BadRequest,
                 401: Unauthorized,

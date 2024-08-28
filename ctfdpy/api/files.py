@@ -14,6 +14,7 @@ from ctfdpy.exceptions import (
     Unauthorized,
 )
 from ctfdpy.models.files import (
+    BaseFile,
     ChallengeFile,
     CreateFilePayload,
     FileType,
@@ -25,6 +26,8 @@ from ctfdpy.utils import MISSING, admin_only
 
 if TYPE_CHECKING:
     from ctfdpy.client import APIClient
+
+list_create_file_adapter = TypeAdapter(list[BaseFile])
 
 list_file_adapter = TypeAdapter(
     list[
@@ -244,7 +247,7 @@ class FilesAPI:
         payload: CreateFilePayload = MISSING,
         files: list[MultipartFileTypes] | None = None,
         file_paths: list[str | os.PathLike] | None = None,
-        type: FileType | None = None,
+        type: FileType = FileType.STANDARD,
         challenge_id: int | None = None,
         challenge: int | None = None,
         page_id: int | None = None,
@@ -333,8 +336,10 @@ class FilesAPI:
         return self._client.request(
             "POST",
             "/api/v1/files",
-            files=payload.dump_json(),
-            response_model=list_file_adapter,
+            data=payload.data_payload,
+            files=payload.files_payload,  # we can't use payload.dump_json() here, see https://github.com/pydantic/pydantic/issues/8907
+            headers={"Content-Type": "multipart/form-data"},
+            response_model=list_create_file_adapter,
             error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
         )
 
@@ -345,7 +350,7 @@ class FilesAPI:
         payload: CreateFilePayload = MISSING,
         files: list[MultipartFileTypes] | None = None,
         file_paths: list[str | os.PathLike] | None = None,
-        type: FileType | None = None,
+        type: FileType = FileType.STANDARD,
         challenge_id: int | None = None,
         challenge: int | None = None,
         page_id: int | None = None,
@@ -434,8 +439,10 @@ class FilesAPI:
         return await self._client.arequest(
             "POST",
             "/api/v1/files",
-            files=payload.dump_json(),
-            response_model=list_file_adapter,
+            data=payload.data_payload,
+            files=payload.files_payload,  # we can't use payload.dump_json() here, see https://github.com/pydantic/pydantic/issues/8907
+            headers={"Content-Type": "multipart/form-data"},
+            response_model=list_create_file_adapter,
             error_models={400: BadRequest, 401: Unauthorized, 403: Forbidden},
         )
 

@@ -375,7 +375,7 @@ class APIClient(Generic[A], APIMixin):
         elif response_data.get("data") is None:
             raise ValueError("Response data expected to have 'data' key")
 
-        if issubclass(response_model, BaseModel):
+        if isinstance(response_model, type) and issubclass(response_model, BaseModel):
             response_data = response_model.model_validate(response_data["data"])
         elif isinstance(response_model, TypeAdapter):
             response_data = response_model.validate_python(response_data["data"])

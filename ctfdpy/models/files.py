@@ -3,7 +3,7 @@ from __future__ import annotations
 from enum import StrEnum
 from typing import TYPE_CHECKING, Any, Literal
 
-from pydantic import AliasChoices, Field, model_serializer, model_validator
+from pydantic import AliasChoices, Field, model_validator
 
 from ctfdpy.models.model import CreatePayloadModel, ResponseModel
 from ctfdpy.types.files import CreateFilePayloadDict, MultipartFileTypes
@@ -203,8 +203,25 @@ class CreateFilePayload(CreatePayloadModel, arbitrary_types_allowed=True):
     page_id: int | None = Field(None, validate_alias=AliasChoices("page_id", "page"))
     location: str | None = Field(None)
 
-    @model_serializer()
-    def _model_ser(self) -> CreateFilePayloadDict:
+    # TODO: Implement this when pydantic supports serializing models with file objects
+    # @model_serializer()
+    # def _model_ser(self) -> CreateFilePayloadDict:
+    #     data = {"type": self.type}
+    #     if self.challenge_id is not None:
+    #         data["challenge_id"] = self.challenge_id
+    #     if self.page_id is not None:
+    #         data["page_id"] = self.page_id
+    #     if self.location is not None:
+    #         data["location"] = self.location
+
+    #     return {"files": [("file", file) for file in self.files], "data": data}
+
+    @property
+    def files_payload(self) -> tuple[Literal["file"], MultipartFileTypes]:
+        return [("file", file) for file in self.files]
+
+    @property
+    def data_payload(self) -> CreateFilePayloadDict:
         data = {"type": self.type}
         if self.challenge_id is not None:
             data["challenge_id"] = self.challenge_id
@@ -212,8 +229,7 @@ class CreateFilePayload(CreatePayloadModel, arbitrary_types_allowed=True):
             data["page_id"] = self.page_id
         if self.location is not None:
             data["location"] = self.location
-
-        return {"files": [("file", file) for file in self.files], "data": data}
+        return data
 
     if TYPE_CHECKING:
         # Ensure type checkers see the correct return type

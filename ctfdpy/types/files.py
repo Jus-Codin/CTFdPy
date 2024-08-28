@@ -1,9 +1,15 @@
-from typing import BinaryIO, Literal, Mapping
+from typing import Mapping
 
 from typing_extensions import TypedDict
 
+# We have to do this as file objects cannot be properly type hinted for pydantic
+# See https://github.com/pydantic/pydantic/issues/5443
+with open(__file__, "rb") as f:
+    # Note that this doesn't include files opened in write mode
+    BinaryFileReader = type(f)
+
 # From https://github.com/encode/httpx/blob/392dbe45f086d0877bd288c5d68abf860653b680/httpx/_types.py#L96-L106
-FileContent = BinaryIO | bytes | str
+FileContent = BinaryFileReader | bytes | str
 MultipartFileTypes = (
     # file (or bytes)
     FileContent
@@ -20,5 +26,7 @@ MultipartFileTypes = (
 
 
 class CreateFilePayloadDict(TypedDict):
-    files: list[tuple[Literal["file"], MultipartFileTypes]]
-    data: dict[str, str | int]
+    type: str
+    challenge_id: int | None
+    page_id: int | None
+    location: str | None

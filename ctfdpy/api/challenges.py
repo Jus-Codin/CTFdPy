@@ -35,6 +35,7 @@ from ctfdpy.models.challenges import (
     UpdateDynamicChallengePayload,
     UpdateStandardChallengePayload,
 )
+from ctfdpy.models.files import FileType
 from ctfdpy.models.flags import Flag, FlagType
 from ctfdpy.models.hints import Hint
 from ctfdpy.models.tags import Tag
@@ -618,9 +619,8 @@ class ChallengesAPI:
                 self._client.topics.create(challenge_id=result.id, value=topic)
 
         if files is not None:
-            for file in files:
-                self._client.files.create(challenge_id=result.id, file=file)
-
+            self._client.files.create(challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE)
+            
         return result
 
     @admin_only
@@ -739,8 +739,7 @@ class ChallengesAPI:
                 )
 
         if files is not None:
-            for file in files:
-                await self._client.files.async_create(challenge_id=result.id, file=file)
+            await self._client.files.async_create(challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE)
 
         return result
 

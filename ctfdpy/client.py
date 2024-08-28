@@ -128,7 +128,7 @@ class APIClient(Generic[A], APIMixin):
         if self.auth is not None:
             auth_flow = self.auth.get_auth_flow(self)
 
-        headers = {"User-Agent": self._user_agent, "Content-Type": "application/json"}
+        headers = {"User-Agent": self._user_agent}
 
         return {
             "auth": auth_flow,
@@ -217,6 +217,37 @@ class APIClient(Generic[A], APIMixin):
         cookies: CookieTypes | None = None,
     ) -> httpx.Response:
         client = self.get_sync_client()
+
+        if headers is not None:
+            try:
+                content_type = headers["Content-Type"]
+
+                if content_type == "multipart/form-data":
+                    # We have to do some special handling for multipart/form-data
+                    # because httpx needs to set the boundary in the headers
+                    # so we just not set the content-type header and let httpx handle it
+                    headers.pop("Content-Type")
+            except TypeError:
+                # headers is a sequence of key-value pairs
+                for header in headers:
+                    if header[0].lower() == "content-type":
+                        content_type = header[1]
+
+                        if content_type == "multipart/form-data":
+                            # We have to do some special handling for multipart/form-data
+                            # because httpx needs to set the boundary in the headers
+                            # so we just not set the content-type header and let httpx handle it
+                            headers = [header for header in headers if header[0].lower() != "content-type"]
+                            
+                        break
+                else:
+                    # Default to application/json
+                    headers.append(("Content-Type", "application/json"))
+            except KeyError:
+                # headers is a mapping and content-type is not present
+                # Default to application/json
+                headers["Content-Type"] = "application/json"
+                
         try:
             return client.request(
                 method,
@@ -248,6 +279,37 @@ class APIClient(Generic[A], APIMixin):
         cookies: CookieTypes | None = None,
     ) -> httpx.Response:
         client = self.get_async_client()
+
+        if headers is not None:
+            try:
+                content_type = headers["Content-Type"]
+
+                if content_type == "multipart/form-data":
+                    # We have to do some special handling for multipart/form-data
+                    # because httpx needs to set the boundary in the headers
+                    # so we just not set the content-type header and let httpx handle it
+                    headers.pop("Content-Type")
+            except TypeError:
+                # headers is a sequence of key-value pairs
+                for header in headers:
+                    if header[0].lower() == "content-type":
+                        content_type = header[1]
+
+                        if content_type == "multipart/form-data":
+                            # We have to do some special handling for multipart/form-data
+                            # because httpx needs to set the boundary in the headers
+                            # so we just not set the content-type header and let httpx handle it
+                            headers = [header for header in headers if header[0].lower() != "content-type"]
+
+                        break
+                else:
+                    # Default to application/json
+                    headers.append(("Content-Type", "application/json"))
+            except KeyError:
+                # headers is a mapping and content-type is not present
+                # Default to application/json
+                headers["Content-Type"] = "application/json"
+
         try:
             return await client.request(
                 method,

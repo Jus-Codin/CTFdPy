@@ -359,7 +359,7 @@ class UserAdminView(BaseUser):
     email: str
 
     created: datetime
-    secret: str  # not sure what this is
+    secret: str | None  # not sure what this is
 
     type: UserType
 

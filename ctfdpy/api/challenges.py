@@ -51,8 +51,8 @@ class _HasChallengeID(Protocol):
     id: int
 
 
-challenge_listing_adapter: TypeAdapter[AnonymousChallenge | ChallengeListing] = (
-    TypeAdapter(AnonymousChallenge | ChallengeListing)
+challenge_listing_adapter: TypeAdapter[list[AnonymousChallenge | ChallengeListing]] = (
+    TypeAdapter(list[AnonymousChallenge | ChallengeListing])
 )
 
 flag_types = str | tuple[str] | tuple[str, FlagType] | tuple[str, FlagType, bool]
@@ -96,6 +96,7 @@ class ChallengesAPI:
     """
     Interface for interacting with the `/api/v1/challenges` CTFd API endpoint.
     """
+
     def __init__(self, client: APIClient):
         self._client = client
 
@@ -619,8 +620,10 @@ class ChallengesAPI:
                 self._client.topics.create(challenge_id=result.id, value=topic)
 
         if files is not None:
-            self._client.files.create(challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE)
-            
+            self._client.files.create(
+                challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE
+            )
+
         return result
 
     @admin_only
@@ -739,7 +742,9 @@ class ChallengesAPI:
                 )
 
         if files is not None:
-            await self._client.files.async_create(challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE)
+            await self._client.files.async_create(
+                challenge_id=result.id, file_paths=files, type=FileType.CHALLENGE
+            )
 
         return result
 

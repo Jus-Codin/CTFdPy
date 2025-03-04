@@ -7,6 +7,7 @@ from ctfdpy.api.files import FilesAPI
 from ctfdpy.api.flags import FlagsAPI
 from ctfdpy.api.hints import HintsAPI
 from ctfdpy.api.tags import TagsAPI
+from ctfdpy.api.teams import TeamsAPI
 from ctfdpy.api.topics import TopicsAPI
 from ctfdpy.api.users import UsersAPI
 
@@ -25,6 +26,7 @@ class APIMixin:
         self._flags_api = FlagsAPI(self._client)
         self._hints_api = HintsAPI(self._client)
         self._tags_api = TagsAPI(self._client)
+        self._teams_api = TeamsAPI(self._client)
         self._topics_api = TopicsAPI(self._client)
         self._users_api = UsersAPI(self._client)
 
@@ -47,6 +49,10 @@ class APIMixin:
     @property
     def tags(self) -> TagsAPI:
         return self._tags_api
+
+    @property
+    def teams(self) -> TeamsAPI:
+        return self._teams_api
 
     @property
     def topics(self) -> TopicsAPI:

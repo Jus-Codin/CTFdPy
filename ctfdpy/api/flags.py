@@ -33,6 +33,7 @@ class FlagsAPI:
     """
     Interface for interacting with the `/api/v1/flags` CTFd API endpoint.
     """
+
     def __init__(self, client: APIClient):
         self._client = client
 

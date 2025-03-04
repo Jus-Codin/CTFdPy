@@ -19,6 +19,7 @@ class TagsAPI:
     """
     Interface for interacting with the `/api/v1/tags` CTFd API endpoint.
     """
+
     def __init__(self, client: APIClient):
         self._client = client
 

@@ -36,6 +36,7 @@ class UsersAPI:
     """
     Interface for interacting with the `/api/v1/users` CTFd API endpoint.
     """
+
     def __init__(self, client: APIClient):
         self._client = client
 
@@ -122,10 +123,14 @@ class UsersAPI:
         )
 
     @overload
-    def create(self, *, payload: CreateUserPayload, notify: bool = False) -> UserAdminView: ...
+    def create(
+        self, *, payload: CreateUserPayload, notify: bool = False
+    ) -> UserAdminView: ...
 
     @overload
-    async def async_create(self, *, payload: CreateUserPayload, notify: bool = False) -> UserAdminView: ...
+    async def async_create(
+        self, *, payload: CreateUserPayload, notify: bool = False
+    ) -> UserAdminView: ...
 
     @overload
     def create(

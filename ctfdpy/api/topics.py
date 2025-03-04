@@ -20,6 +20,7 @@ class TopicsAPI:
     """
     Interface for interacting with the `/api/v1/topics` CTFd API endpoint.
     """
+
     def __init__(self, client: APIClient):
         self._client = client
 

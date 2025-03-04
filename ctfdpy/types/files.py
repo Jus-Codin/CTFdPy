@@ -1,15 +1,15 @@
-from typing import Mapping
+from typing import Mapping, Protocol, TypedDict, runtime_checkable
 
-from typing_extensions import TypedDict
 
 # We have to do this as file objects cannot be properly type hinted for pydantic
 # See https://github.com/pydantic/pydantic/issues/5443
-with open(__file__, "rb") as f:
-    # Note that this doesn't include files opened in write mode
-    BinaryFileReader = type(f)
+@runtime_checkable
+class SupportsReadBytes(Protocol):
+    def read(self, size: int) -> bytes: ...
+
 
 # From https://github.com/encode/httpx/blob/392dbe45f086d0877bd288c5d68abf860653b680/httpx/_types.py#L96-L106
-FileContent = BinaryFileReader | bytes | str
+FileContent = SupportsReadBytes | bytes | str
 MultipartFileTypes = (
     # file (or bytes)
     FileContent

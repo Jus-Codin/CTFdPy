@@ -5,6 +5,10 @@ from typing_extensions import TypedDict
 T = TypeVar("T", bound=str)
 
 
+class ChallengeTagsDict(TypedDict):
+    value: str
+
+
 class ChallengeTypeTemplatesDict(TypedDict):
     """
     Represents the HTML templates for the UI to edit the challenge type

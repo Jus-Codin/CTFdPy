@@ -11,6 +11,7 @@ from ctfdpy.models.files import FileType
 from ctfdpy.models.model import CreatePayloadModel, ResponseModel, UpdatePayloadModel
 from ctfdpy.types.challenges import (
     ChallengeRequirementsDict,
+    ChallengeTagsDict,
     ChallengeTypeDataDict,
     ChallengeTypeScriptsDict,
     ChallengeTypeTemplatesDict,
@@ -113,7 +114,7 @@ class ChallengeListing(ResponseModel):
         Whether the challenge is solved by the current user
     category : str
         The category of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     template : str
         The HTML template of the modal for the challenge. Used internally by the CTFd frontend.
@@ -136,7 +137,7 @@ class ChallengeListing(ResponseModel):
         Whether the challenge is solved by the current user
     category : str
         The category of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     template : str
         The HTML template of the modal for the challenge. Used internally by the CTFd frontend.
@@ -151,7 +152,7 @@ class ChallengeListing(ResponseModel):
     solves: int
     solved_by_me: bool
     category: str
-    tags: list[str]
+    tags: list[ChallengeTagsDict]
     template: str = Field(frozen=True, exclude=True)
     script: str = Field(frozen=True, exclude=True)
 
@@ -335,7 +336,7 @@ class BaseChallenge(_BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge
@@ -374,7 +375,7 @@ class BaseChallenge(_BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge
@@ -387,7 +388,7 @@ class BaseChallenge(_BaseChallenge):
     attempts: int
 
     files: list[str]
-    tags: list[str]
+    tags: list[ChallengeTagsDict]
     hints: list[
         Annotated[
             Annotated[LockedChallengeHint, Tag("locked")]
@@ -435,7 +436,7 @@ class StandardChallenge(BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge
@@ -474,7 +475,7 @@ class StandardChallenge(BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge
@@ -530,7 +531,7 @@ class DynamicChallenge(BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge
@@ -577,7 +578,7 @@ class DynamicChallenge(BaseChallenge):
         The number of attempts the current user has made on the challenge
     files : list[str]
         The URL paths to the files of the challenge
-    tags : list[str]
+    tags : list[ChallengeTagsDict]
         The tags of the challenge
     hints : list[LockedChallengeHint | UnlockedChallengeHint]
         The hints of the challenge

@@ -218,7 +218,10 @@ class APIClient(Generic[A], APIMixin):
     ) -> httpx.Response:
         client = self.get_sync_client()
 
-        if headers is not None:
+        if headers is None:
+            # Default to application/json
+            headers = {"Content-Type": "application/json"}
+        else:
             try:
                 content_type = headers["Content-Type"]
 
@@ -237,8 +240,12 @@ class APIClient(Generic[A], APIMixin):
                             # We have to do some special handling for multipart/form-data
                             # because httpx needs to set the boundary in the headers
                             # so we just not set the content-type header and let httpx handle it
-                            headers = [header for header in headers if header[0].lower() != "content-type"]
-                            
+                            headers = [
+                                header
+                                for header in headers
+                                if header[0].lower() != "content-type"
+                            ]
+
                         break
                 else:
                     # Default to application/json
@@ -247,7 +254,7 @@ class APIClient(Generic[A], APIMixin):
                 # headers is a mapping and content-type is not present
                 # Default to application/json
                 headers["Content-Type"] = "application/json"
-                
+
         try:
             return client.request(
                 method,
@@ -280,7 +287,10 @@ class APIClient(Generic[A], APIMixin):
     ) -> httpx.Response:
         client = self.get_async_client()
 
-        if headers is not None:
+        if headers is None:
+            # Default to application/json
+            headers = {"Content-Type": "application/json"}
+        else:
             try:
                 content_type = headers["Content-Type"]
 
@@ -299,7 +309,11 @@ class APIClient(Generic[A], APIMixin):
                             # We have to do some special handling for multipart/form-data
                             # because httpx needs to set the boundary in the headers
                             # so we just not set the content-type header and let httpx handle it
-                            headers = [header for header in headers if header[0].lower() != "content-type"]
+                            headers = [
+                                header
+                                for header in headers
+                                if header[0].lower() != "content-type"
+                            ]
 
                         break
                 else:
@@ -532,7 +546,7 @@ class APIClient(Generic[A], APIMixin):
         Create an APIClient from environment variables
 
         The following environment variables are used:
-        
+
         - `CTFD_URL`: The base URL of the CTFd instance
         - `CTFD_TOKEN`: The token to use for authentication
         - `CTFD_USERNAME`: The username to use for authentication

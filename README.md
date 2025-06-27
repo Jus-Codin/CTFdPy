@@ -16,7 +16,7 @@ It is designed to make it easier to interact with the CTFd API in Python to stre
 To install from PyPI, run the following command:
 
 ```console
-$ pip install -U CTFdPy
+$ pip install -U ctfdpy
 ```
 
 #### Installing from Source
@@ -27,9 +27,9 @@ $ pip install -U CTFdPy
 Git clone the repository, and pip install it
 
 ```console
-$ git clone https://github.com/Jus-Codin/CTFdPy.git
+$ git clone https://github.com/Jus-Codin/ctfdpy.git
 
-$ cd CTFdPy
+$ cd ctfdpy
 
 $ pip install -e .
 ```
@@ -37,7 +37,7 @@ $ pip install -e .
 Alternatively, you can install it directly from the repository:
 
 ```console
-$ pip install -U git+https://github.com/Jus-Codin/CTFdPy.git
+$ pip install -U git+https://github.com/Jus-Codin/ctfdpy.git
 ```
 
 ### Example Usage

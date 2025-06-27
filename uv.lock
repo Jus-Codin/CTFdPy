@@ -127,8 +127,8 @@ wheels = [
 
 [[package]]
 name = "ctfdpy"
-version = "0.1.0"
-source = { virtual = "." }
+version = "0.1.0a1"
+source = { editable = "." }
 dependencies = [
     { name = "httpx" },
     { name = "pydantic", extra = ["email"] },

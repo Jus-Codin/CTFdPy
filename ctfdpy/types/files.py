@@ -1,4 +1,6 @@
-from typing import Mapping, Protocol, TypedDict, runtime_checkable
+from typing import Mapping, Protocol, runtime_checkable
+
+from typing_extensions import TypedDict
 
 
 # We have to do this as file objects cannot be properly type hinted for pydantic

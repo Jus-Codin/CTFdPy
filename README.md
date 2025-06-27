@@ -27,7 +27,7 @@ $ pip install -U ctfdpy
 Git clone the repository, and pip install it
 
 ```console
-$ git clone https://github.com/Jus-Codin/ctfdpy.git
+$ git clone https://github.com/Jus-Codin/CTFdPy.git
 
 $ cd ctfdpy
 
@@ -37,7 +37,7 @@ $ pip install -e .
 Alternatively, you can install it directly from the repository:
 
 ```console
-$ pip install -U git+https://github.com/Jus-Codin/ctfdpy.git
+$ pip install -U git+https://github.com/Jus-Codin/CTFdPy.git
 ```
 
 ### Example Usage

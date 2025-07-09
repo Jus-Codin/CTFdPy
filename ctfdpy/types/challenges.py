@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import Generic, NotRequired, TypeVar
 
 from typing_extensions import TypedDict
 
@@ -42,4 +42,4 @@ class ChallengeRequirementsDict(TypedDict):
     """
 
     prerequisites: list[int]
-    anonymize: bool
+    anonymize: NotRequired[bool]
